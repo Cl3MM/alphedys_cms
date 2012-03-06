@@ -3,6 +3,7 @@ class Document < ActiveRecord::Base
   attr_accessible :user_id, :uploaded_file
 
   #set up "uploaded_file" field as attached_file (using Paperclip)
+  include "Paperclip"
   has_attached_file :uploaded_file,
                :url => "/assets/get/:id",
                :path => ":rails_root/public/system/:id/:basename.:extension"
