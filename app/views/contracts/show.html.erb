@@ -1,0 +1,32 @@
+<h1>Contract</h1>
+
+<p>
+  <b>User</b><br>
+  <%= @contract.user_id %>
+</p>
+
+<p>
+  <b>Name</b><br>
+  <%= @contract.name %>
+</p>
+
+<p>
+  <b>Price</b><br>
+  <%= @contract.price %>
+</p>
+
+<p>
+  <b>Startdate</b><br>
+  <%= @contract.startdate %>
+</p>
+
+<p>
+  <b>Endate</b><br>
+  <%= @contract.endate %>
+</p>
+
+<div class="form-actions">
+  <%= link_to 'Back', user_path(current_user), :class => 'btn'  %>
+  <%= link_to 'Edit', edit_user_contract_path(@user), :class => 'btn' %>
+  <%= link_to 'Delete', user_contract_path(@user), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+</div>

@@ -1,0 +1,2 @@
+module Administration::DocumentsHelper
+end

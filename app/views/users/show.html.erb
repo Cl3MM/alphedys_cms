@@ -1,0 +1,48 @@
+<div class="page-header">
+  <h2>
+    Contracts
+    <small> For user <%= @user.name_tag %></small>
+  </h2>
+</div>
+<% unless @user.contracts.empty? %>
+  <div class="accordion" id="accordion2">
+    <% @user.contracts.each do |contract| %>
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <%#= link_to 'Delete', administration_user_contract_path(@user, contract), :method => :delete, :confirm => 'Are you sure?', :class => "btn btn-danger pull-right"  %>
+          <%= link_to contract.name, "#collapse_#{contract.id}", :class => "accordion-toggle", :"data-toggle" => "collapse", :"data-parent" => "#accordion2" %>
+        </div>
+        <div id="collapse<%= "_#{contract.id}" %>" class="accordion-body collapse in">
+          <div class="accordion-inner">
+            <% unless contract.documents.empty? %>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>File name</th>
+                    <th>Size</th>
+                    <th>Modified</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% contract.documents.each do |document| %>
+                    <tr>
+                      <td><%= document.id %></td>
+                      <td><%= link_to document.contract_id, user_contract_document_path(@user, contract,document) %></td>
+                      <td><%= document.created_at %></td>
+                      <td>
+                        <%= link_to 'Edit', edit_user_contract_document_path(@user, contract, document), :class => 'btn btn-mini' %>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            <% else %>
+              No documents
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

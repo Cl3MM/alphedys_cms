@@ -1,0 +1,11 @@
+<%= simple_form_for [:administration, @user, @contract], :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+  <%= f.error_notification %>
+
+  <%= f.input :name, label: "Name" %>
+  <%= f.input :price, hint: "price should be in EUR"  %>
+  <%= f.input :startdate, label: "Starting Date" %>
+  <%= f.input :endate, label: "Ending Date"  %>
+  <%= f.button :submit, :class => "btn btn-primary" %>
+</fieldset>
+<% end -%>

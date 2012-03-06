@@ -1,0 +1,6 @@
+<%= simple_form_for [:administration, @user, @contract, @document], :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.input :uploaded_file, label: "File" %>
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+<% end %>

@@ -1,0 +1,31 @@
+<div class="page-header">
+  <h1>Contracts</h1>
+</div>
+
+<% if @contracts %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>User</th>
+        <th>Created at</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @contracts.each do |contract| %>
+        <tr>
+          <td><%= contract.id %></td>
+          <td><%= link_to contract.user_id, contract_path(contract) %></td>
+          <td><%= contract.created_at %></td>
+          <td>
+            <%= link_to 'Edit', edit_administration_user_contract_path(@user, contract), :class => 'btn btn-mini' %>
+            <%= link_to 'Destroy', administration_user_contract_path(@user, contract), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  No contracts: <%= link_to 'Add contract', new_administration_user_contract_path(@user) %>
+<% end -%>

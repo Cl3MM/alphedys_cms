@@ -1,0 +1,51 @@
+<div class="page-header">
+  <h2>
+    Contracts
+    <small> For user <%= @user.name_tag %></small>
+    <%= link_to 'Add contract', new_administration_user_contract_path(@user), :class => 'btn btn-primary pull-right' %>
+  </h2>
+</div>
+<% unless @user.contracts.empty? %>
+  <% @user.contracts.each do |contract| %>
+    <h3>
+      <%= contract.name %>
+      <div class="btn-group pull-right">
+        <%= link_to 'View', administration_user_contract_path(@user, contract), :class => "btn btn-info btn-mini" %>
+        <%= link_to 'Edit', edit_administration_user_contract_path(@user, contract), :class => "btn btn-info btn-mini" %>
+        <%= link_to 'Delete', administration_user_contract_path(@user, contract), :method => :delete, :confirm => 'Are you sure?', :class => "btn btn-info btn-mini"  %>
+      </div>
+    </h3>
+    <% if contract.documents.empty? %>
+      No document: <%= link_to 'Add document', new_administration_user_contract_document_path(@user, contract) %>
+    <% else %>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>File name</th>
+            <th>Size</th>
+            <th>Modified</th>
+            <th class="pull-right">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% contract.documents.each do |document| %>
+            <tr>
+              <td><%= document.file_name.capitalize %></td>
+              <td><%= document.uploaded_file_file_size %></td>
+              <td><%= document.uploaded_file_updated_at %></td>
+              <td>
+                <div class="btn-group pull-right">
+                  <%= link_to 'Download', admin_download_url(document), :class => 'btn btn-mini' %>
+                  <%= link_to 'Edit', edit_administration_user_contract_document_path(@user, contract, document), :class => 'btn btn-mini' %>
+                  <%= link_to 'Destroy', administration_user_contract_document_path(@user, contract, document), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  <% end %>
+<% else %>
+  No contract: <%= link_to 'Add contract', new_administration_user_contract_path(@user) %>
+<% end %>
