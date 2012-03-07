@@ -21,6 +21,7 @@ CmsAlphedys::Application.routes.draw do
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
+  get 'administration', to: 'sessions#new', as: 'administration'
 
   match "documents/get/:id" => "documents#get", :as => "download"
   match "administration/documents/get/:id" => "administration/documents#get", :as => "admin_download"

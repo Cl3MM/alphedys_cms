@@ -1,4 +1,4 @@
-<h1>Users</h1>
+<h1>Clients</h1>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -16,7 +16,7 @@
         <td><%= user.created_at %></td>
         <td>
           <%= link_to 'Edit', edit_user_path(user), :class => 'btn btn-mini' %>
-          <%= link_to 'Destroy', user_path(user), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+          <%= link_to 'Destroy', user_path(user), :method => :delete, :confirm => 'Etes vous sûr ?', :class => 'btn btn-mini btn-danger' %>
         </td>
       </tr>
     <% end %>

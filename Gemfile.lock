@@ -1,13 +1,3 @@
-GIT
-  remote: git://github.com/thoughtbot/paperclip.git
-  revision: 9092f7a7170bc57a0a7a517acd15baabf9d68cb9
-  specs:
-    paperclip (2.7.0)
-      activerecord (>= 2.3.0)
-      activesupport (>= 2.3.2)
-      cocaine (>= 0.0.2)
-      mime-types
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -98,6 +88,11 @@ GEM
     mime-types (1.17.2)
     multi_json (1.1.0)
     nokogiri (1.5.0)
+    paperclip (2.7.0)
+      activerecord (>= 2.3.0)
+      activesupport (>= 2.3.2)
+      cocaine (>= 0.0.2)
+      mime-types
     polyglot (0.3.3)
     rack (1.4.1)
     rack-cache (1.1)
@@ -187,7 +182,7 @@ DEPENDENCIES
   factory_girl_rails
   guard-rspec
   jquery-rails
-  paperclip!
+  paperclip
   rails (= 3.2.0)
   rspec-rails
   sass-rails (~> 3.2.3)

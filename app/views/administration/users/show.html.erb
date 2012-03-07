@@ -7,14 +7,16 @@
 </div>
 <% unless @user.contracts.empty? %>
   <% @user.contracts.each do |contract| %>
-    <h3>
-      <%= contract.name %>
-      <div class="btn-group pull-right">
-        <%= link_to 'View', administration_user_contract_path(@user, contract), :class => "btn btn-info btn-mini" %>
-        <%= link_to 'Edit', edit_administration_user_contract_path(@user, contract), :class => "btn btn-info btn-mini" %>
-        <%= link_to 'Delete', administration_user_contract_path(@user, contract), :method => :delete, :confirm => 'Are you sure?', :class => "btn btn-info btn-mini"  %>
-      </div>
-    </h3>
+    <div class="alert alert-info">
+      <h3 class="alert-heading">
+        <%= contract.name %>
+        <div class="btn-group pull-right">
+          <%= link_to 'View', administration_user_contract_path(@user, contract), :class => "btn btn-small" %>
+          <%= link_to 'Edit', edit_administration_user_contract_path(@user, contract), :class => "btn btn-small" %>
+          <%= link_to 'Delete', administration_user_contract_path(@user, contract), :method => :delete, :confirm => 'Are you sure?', :class => "btn btn-small"%>
+        </div>
+      </h3>
+    </div>
     <% if contract.documents.empty? %>
       No document: <%= link_to 'Add document', new_administration_user_contract_document_path(@user, contract) %>
     <% else %>
@@ -45,6 +47,7 @@
         </tbody>
       </table>
     <% end %>
+    <hr/>
   <% end %>
 <% else %>
   No contract: <%= link_to 'Add contract', new_administration_user_contract_path(@user) %>

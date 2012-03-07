@@ -1,5 +1,5 @@
+# encoding: UTF-8
 class UsersController < ApplicationController
-#  load_and_authorize_resource
 
   def index
     @users = User.find(:all)
@@ -11,6 +11,11 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    unless authorize_if_admin
+      redirect_to root_url, :notice => "Vous devez avoir un compte pour accéder à cette page"
+    else
+      render "new"
+    end
   end
 
   def show
@@ -21,7 +26,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_url, notice: "Thank you for signing up!"
+      redirect_to root_url, notice: "Votre compte à bien été créer !"
     else
       render "new"
     end
@@ -30,7 +35,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
-      redirect_to root_url, notice: "Profile uccessfully updated!"
+      redirect_to root_url, notice: "Votre profil a été mis à jour avec succès !"
     else
       render "edit"
     end

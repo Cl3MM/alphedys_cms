@@ -1,15 +1,15 @@
 <%= form_tag password_resets_path, :method => :post, :class => 'form-horizontal' do %>
   <fieldset>
-    <legend>Reset your password</legend>
+    <legend>Réinitialisation de votre mot de passe</legend>
 
     <div class="control-group">
-    <%= label_tag :email, :email.capitalize, :class => 'control-label' %>
+    <%= label_tag "Adresse e-mail", :email.capitalize, :class => 'control-label' %>
       <div class="controls">
         <%= text_field_tag :email, params[:email], :class => 'text_field' %>
       </div>
   </div>
   <div class="form-actions">
-    <%= submit_tag "Reset Password", :class => 'btn btn-primary' %>
+    <%= submit_tag "Réinitialiser le mot de passe", :class => 'btn btn-primary' %>
   </div>
 
   </fieldset>
