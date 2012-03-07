@@ -1,0 +1,9 @@
+fr:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            password_conifrmation : "Confirmation du mot de passe"
+      messages:
+        record_invalid: "Enregistrement Invalide"

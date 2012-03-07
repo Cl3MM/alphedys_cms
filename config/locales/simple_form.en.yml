@@ -9,9 +9,10 @@ en:
       # When using html, text and mark won't be used.
       # html: '<abbr title="required">*</abbr>'
     error_notification:
-      default_message: "Some errors were found, please take a look:"
+      default_message: "Des erreurs ont été trouvées, merci de vérifier:"
     # Labels and hints examples
-    # labels:
+    labels:
+      password_conifrmation: "Confirmation du mot de passe"
     #   password: 'Password'
     #   user:
     #     new:

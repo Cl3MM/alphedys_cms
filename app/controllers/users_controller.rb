@@ -11,15 +11,16 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-    unless authorize_if_admin
-      redirect_to root_url, :notice => "Vous devez avoir un compte pour accéder à cette page"
-    else
-      render "new"
-    end
+#    unless authorize_if_admin
+#      redirect_to root_url, :notice => "Vous devez avoir un compte pour accéder à cette page"
+#    else
+#      render "new"
+#    end
   end
 
   def show
     @user = User.find(params[:id])
+    session[:span] = 6 if current_user.is_admin?
   end
 
   def create

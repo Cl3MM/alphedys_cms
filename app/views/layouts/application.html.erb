@@ -69,15 +69,12 @@
             </div>
           </div>
         <% end %>
-        <div class="span6 offset2">
-
+        <%=  %>
+        <div class="span<%=  session[:span].nil? ? "6" : session[:span] %> offset2">
           <%= yield %>
-
         </div>
-        <div class="span2">
-          <% about = "<h2>A propos</h2> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." %>
-          <%= content_for?(:right_pane) ? yield(:right_pane) : raw(about) %>
-        </div>
+        <% about = '<div class="span2"><h2>A propos</h2> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>' %>
+        <%= content_for?(:right_pane) ? yield(:right_pane) : raw(about) %>
       </div>
     </div>
   </body>

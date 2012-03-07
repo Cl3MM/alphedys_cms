@@ -8,6 +8,9 @@ class User < ActiveRecord::Base
                   :city
 
   validates_uniqueness_of :email
+  validates_presence_of :email
+  #, :password_confirmation, :password_confirmation
+  validates :password, :confirmation => true
 
   before_create { generate_token(:auth_token) }
 

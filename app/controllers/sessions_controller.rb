@@ -13,6 +13,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       if user.is_admin?
+        session[:span] = 8
         redirect_to administration_users_url, notice: "Welcome #{user.name_tag}!"
       else
         redirect_to user, notice: "Welcome #{user.name_tag}!"

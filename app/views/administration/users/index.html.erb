@@ -1,3 +1,8 @@
+<% content_for :right_pane do %>
+  <span style="display:none;"></span>
+<% end %>
+
+
 <div class="page-header">
   <h1>Clients list
     <%= link_to "New User", new_administration_user_path, :class => "btn btn-primary pull-right" %>
@@ -7,18 +12,18 @@
   <thead>
     <tr>
       <td>Name</td>
-      <td># Contracts</td>
-      <td># Files</td>
-      <td>Disk usage</td>
-      <td>Last Connection</td>
-      <td class="pull-right">Actions</td>
+      <td># Contrats</td>
+      <td># Fichiers</td>
+      <td>Espace disque</td>
+      <td>Connection</td>
+      <td>Actions</td>
     </tr>
   </thead>
   <tbody>
     <% @users.each do |user| %>
       <tr>
         <td>
-          <%= ((user.firstname && user.lastname).nil?  ? user.email : "#{user.firstname.capitalize} #{user.lastname.upcase}") %>
+          <%= print_upto( ((user.firstname && user.lastname).nil?  ? user.email : "#{user.firstname.capitalize} #{user.lastname.upcase}"), 30) %>
         </td>
         <td><%=  user.contracts.size %></td>
         <td><%=  user.file_number %></td>
