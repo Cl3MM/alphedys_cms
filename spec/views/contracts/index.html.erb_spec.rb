@@ -7,15 +7,15 @@ describe "contracts/index" do
         :user_id => 1,
         :name => "Name",
         :price => 1.5,
-        :startdate => "Startdate",
-        :endate => "Endate"
+        :start_date => "Startdate",
+        :end_date => "Endate"
       ),
       stub_model(Contract,
         :user_id => 1,
         :name => "Name",
         :price => 1.5,
-        :startdate => "Startdate",
-        :endate => "Endate"
+        :start_date => "Startdate",
+        :end_date => "Endate"
       )
     ])
   end

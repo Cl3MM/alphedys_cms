@@ -1,8 +1,20 @@
+<% content_for :breadcrumbs do %>
+  <ul class="breadcrumb">
+    <li>
+      <%= link_to "Administration", administration_users_path %>
+      <span class="divider">/</span>
+    </li>
+    <li class="active">
+      <%= link_to "Utilisateur : #{@user.name_tag}", administration_user_path(@user)%>
+    </li>
+  </ul>
+<% end %>
+
 <div class="page-header">
   <h2>
-    Contracts
-    <small> For user <%= @user.name_tag %></small>
-    <%= link_to 'Add contract', new_administration_user_contract_path(@user), :class => 'btn btn-primary pull-right' %>
+    Contrats
+    <small> appartenant à <%= @user.name_tag %></small>
+    <%= link_to 'Nouveau contrat', new_administration_user_contract_path(@user), :class => 'btn btn-primary pull-right' %>
   </h2>
 </div>
 <% unless @user.contracts.empty? %>
@@ -11,35 +23,41 @@
       <h3 class="alert-heading">
         <%= contract.name %>
         <div class="btn-group pull-right">
-          <%= link_to 'View', administration_user_contract_path(@user, contract), :class => "btn btn-small" %>
-          <%= link_to 'Edit', edit_administration_user_contract_path(@user, contract), :class => "btn btn-small" %>
-          <%= link_to 'Delete', administration_user_contract_path(@user, contract), :method => :delete, :confirm => 'Are you sure?', :class => "btn btn-small"%>
+          <%= link_to 'Voir', administration_user_contract_path(@user, contract), :class => "btn btn-small" %>
+          <%= link_to 'Modifier', edit_administration_user_contract_path(@user, contract), :class => "btn btn-small" %>
+          <%= link_to 'Supprimer', administration_user_contract_path(@user, contract), :method => :delete, :confirm => "Êtes vous sur de vouloir supprimer le contrat #{contract.name} ?", :class => "btn btn-small"%>
         </div>
       </h3>
     </div>
     <% if contract.documents.empty? %>
-      No document: <%= link_to 'Add document', new_administration_user_contract_document_path(@user, contract) %>
+      Aucun fichier : <%= link_to 'Ajouter un fichier', new_administration_user_contract_document_path(@user, contract) %>
     <% else %>
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>File name</th>
-            <th>Size</th>
-            <th>Modified</th>
+            <th>Fichier</th>
+            <th>Taille</th>
+            <th>Versions</th>
             <th class="pull-right">Actions</th>
           </tr>
         </thead>
         <tbody>
           <% contract.documents.each do |document| %>
             <tr>
-              <td><%= document.file_name.capitalize %></td>
-              <td><%= document.uploaded_file_file_size %></td>
-              <td><%= document.uploaded_file_updated_at %></td>
+              <td><%= link_to document.file_name.capitalize, administration_user_contract_document_path(@user, contract, document) %></td>
+              <td><%= number_to_human_size document.uploaded_file_file_size %></td>
+              <td><%= document.versions.empty? ? 1 : document.versions.size %></td>
               <td>
                 <div class="btn-group pull-right">
-                  <%= link_to 'Download', admin_download_url(document), :class => 'btn btn-mini' %>
-                  <%= link_to 'Edit', edit_administration_user_contract_document_path(@user, contract, document), :class => 'btn btn-mini' %>
-                  <%= link_to 'Destroy', administration_user_contract_document_path(@user, contract, document), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+                  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Actions
+                    <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><%= link_to 'Télécharger', admin_download_url(document) %></li>
+                    <li><%= link_to 'Voir', administration_user_contract_document_path(@user, contract, document) %></li>
+                    <li><%= link_to 'Editer', edit_administration_user_contract_document_path(@user, contract, document) %></li>
+                    <li><%= link_to 'Supprimer', administration_user_contract_document_path(@user, contract, document), :method => :delete, :confirm => "Êtes vous sûr de vouloir supprimer le fichier #{document.file_name.capitalize}" %></li>
+                  </ul>
                 </div>
               </td>
             </tr>
@@ -50,5 +68,5 @@
     <hr/>
   <% end %>
 <% else %>
-  No contract: <%= link_to 'Add contract', new_administration_user_contract_path(@user) %>
+  Aucun contrat : <%= link_to 'Ajouter un contrat', new_administration_user_contract_path(@user) %>
 <% end %>

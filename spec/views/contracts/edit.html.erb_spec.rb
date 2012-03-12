@@ -6,8 +6,8 @@ describe "contracts/edit" do
       :user_id => 1,
       :name => "MyString",
       :price => 1.5,
-      :startdate => "MyString",
-      :endate => "MyString"
+      :start_date => "MyString",
+      :end_date => "MyString"
     ))
   end
 

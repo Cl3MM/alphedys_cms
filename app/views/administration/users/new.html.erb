@@ -1,10 +1,20 @@
+<% content_for :breadcrumbs do %>
+<ul class="breadcrumb">
+  <li>
+    <%= link_to "Administration", administration_users_path %>
+    <span class="divider">/</span>
+  </li>
+  <li class="active">
+    <%= link_to "Nouvel Utilisateur", new_administration_user_path%>
+  </li>
+</ul>
+<% end %>
+
 <div class="page-header">
-  <h2>New user
-  </h2>
+  <h2>Ajout d'un nouveau client </h2>
 </div>
 
-<%= form_for [:administration, @user], :html => { :class => 'form-horizontal' } do |f| %>
-
+<%= simple_form_for [:administration, @user], :html => { :class => 'form-horizontal' } do |f| %>
   <% if @user.errors.any? %>
     <div class="alert alert-error">
       <h4 class="alert-heading">Form is invalid</h4>
@@ -16,41 +26,17 @@
       </ul>
     </div>
   <% end %>
-
   <fieldset>
-    <div class="control-group">
-      <%= f.label :email, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :email, :class => 'text_field' %>
-      </div>
-    </div>
 
-    <div class="control-group">
-      <%= f.label :password, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.password_field :password, :class => 'password_field' %>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <%= f.label :password_confirmation, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.password_field :password_confirmation, :class => 'password_field' %>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <%= f.label :role, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.select :role, %w[user admin], :class => 'password_field' %>
-      </div>
-    </div>
-
+    <%= f.input :email, label: "Adresse email", hint: "Cette adresse sera votre identifiant de connexion." %>
+    <%= f.input :password, label: "Mot de passe" %>
+    <%= f.input :password_confirmation, label: "Confirmer le mot de passe" %>
+    <%= f.input :role, :collection => %w[user admin], label: "Rôle", :prompt => "Sélectionnez un rôle" %>
+    <%= f.error :base %>
     <div class="form-actions">
-      <%= f.submit "Sign Up", :class => 'btn btn-primary' %>
-      <%= link_to "Cancel", administration_users_url, :class => 'btn' %>
+      <%= f.button :submit, "Créer client", :class => 'btn-primary' %>
+      <%= link_to 'Retour', administration_users_path, :type => :reset, :class => "btn btn" %>
     </div>
-
   </fieldset>
+<% end -%>
 
-<% end %>

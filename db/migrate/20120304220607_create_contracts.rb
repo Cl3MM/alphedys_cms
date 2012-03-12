@@ -4,8 +4,8 @@ class CreateContracts < ActiveRecord::Migration
       t.integer :user_id
       t.string :name
       t.float :price
-      t.string :startdate
-      t.string :endate
+      t.date :start_date
+      t.date :end_date
 
       t.timestamps
     end

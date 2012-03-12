@@ -6,8 +6,8 @@ describe "contracts/new" do
       :user_id => 1,
       :name => "MyString",
       :price => 1.5,
-      :startdate => "MyString",
-      :endate => "MyString"
+      :start_date => "MyString",
+      :end_date => "MyString"
     ).as_new_record)
   end
 
@@ -19,8 +19,8 @@ describe "contracts/new" do
       assert_select "input#contract_user_id", :name => "contract[user_id]"
       assert_select "input#contract_name", :name => "contract[name]"
       assert_select "input#contract_price", :name => "contract[price]"
-      assert_select "input#contract_startdate", :name => "contract[startdate]"
-      assert_select "input#contract_endate", :name => "contract[endate]"
+      assert_select "input#contract_start_date", :name => "contract[start_date]"
+      assert_select "input#contract_end_date", :name => "contract[end_date]"
     end
   end
 end

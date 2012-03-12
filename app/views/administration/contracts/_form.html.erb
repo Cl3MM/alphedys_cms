@@ -1,11 +1,48 @@
+<% content_for :breadcrumbs do %>
+<ul class="breadcrumb">
+  <li>
+    <%= link_to "Administration", administration_users_path %>
+    <span class="divider">/</span>
+  </li>
+  <li>
+    <%= link_to "Utilisateur : #{@user.name_tag}", administration_user_path(@user)%>
+    <span class="divider">/</span>
+  </li>
+  <li class="active">
+    <%= link_to "Nouveau Contrat", new_administration_user_contract_path(@user)%>
+  </li>
+</ul>
+<% end %>
+
+<div class="page-header">
+  <h2>
+    Nouveau contrat
+    <small> pour <%= @user.name_tag %></small>
+  </h2>
+</div>
+
 <%= simple_form_for [:administration, @user, @contract], :html => { :class => 'form-horizontal' } do |f| %>
   <fieldset>
-  <%= f.error_notification %>
+    <%= f.error_notification %>
+  <% if @user.errors.any? %>
+    <div class="alert alert-error">
+      <h4 class="alert-heading">Form is invalid</h4>
+      <a class="close" data-dismiss="alert">&times;</a>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-  <%= f.input :name, label: "Name" %>
-  <%= f.input :price, hint: "price should be in EUR"  %>
-  <%= f.input :startdate, label: "Starting Date" %>
-  <%= f.input :endate, label: "Ending Date"  %>
-  <%= f.button :submit, :class => "btn btn-primary" %>
-</fieldset>
+    <%= f.input :name, label: "Nom" %>
+    <%= f.input :price, hint: "Prix en EUR"  %>
+    <%= f.input :start_date, label: "Date de début" %>
+    <%= f.input :end_date, label: "Date de fin"  %>
+    <div class="form-actions">
+      <%= f.button :submit, "Créer contrat", :class => "btn btn-primary" %>
+      <%= link_to "Annuler", administration_user_path(@user), :class => "btn" %>
+    </div>
+  </fieldset>
 <% end -%>

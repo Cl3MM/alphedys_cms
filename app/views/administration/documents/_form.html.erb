@@ -1,30 +1,16 @@
-<% content_for :right_pane do %>
-  <div class="span2">
-    <div class="page-header">
-      <h2>Instructions</h2>
-    </div>
-    <h3>Ajoutez un fichier: </h3>
-    <p>
-      Cliquer sur le bouton <strong>Choisissez un fichier</strong> puis sélectionnez un fichier dans la boite de dialogue et validez en appuyant sur <strong>Ouvrir</strong>.
-    </p>
-    <h3>Laisser un commentaire:</h3>
-    <p>Inscrivez un commentaire dans le champ <strong>Commentaire</strong> prévu à cet effet</p>
-    <h3>Envoyer :</h3>
-    <p>
-      Cliquer sur le bouton <strong>Ajouter un document</strong> pour effectivement lier le document au contrat.
-    </p>
-  </div>
-<% end %>
-
-<div class="page-header">
-  <h2>
-    Contrats
-    <small> de <%= @user.name_tag %></small>
-  </h2>
-</div>
-
 <%= simple_form_for [:administration, @user, @contract, @document], :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.error_notification %>
+  <% if @user.errors.any? %>
+    <div class="alert alert-error">
+      <h4 class="alert-heading">Form is invalid</h4>
+      <a class="close" data-dismiss="alert">&times;</a>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <%= f.input :uploaded_file, label: "Fichier à ajouter", prompt: "salut" %>
   <div class="form-actions">

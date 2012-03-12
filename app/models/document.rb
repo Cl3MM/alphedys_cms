@@ -1,4 +1,10 @@
 class Document < ActiveRecord::Base
+  versioned
+
+  Paperclip.interpolates :version do |attachment, style|
+    attachment.instance.version.to_s
+  end
+
   belongs_to :contract
   attr_accessible :user_id, :uploaded_file
 
@@ -15,9 +21,5 @@ class Document < ActiveRecord::Base
 
   def file_name
     uploaded_file_file_name
-  end
-
-  Paperclip.interpolates :version do |attachment, style|
-    attachment.instance.version.to_s
   end
 end

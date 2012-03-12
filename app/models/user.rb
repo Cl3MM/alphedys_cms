@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_secure_password
-  has_many :contracts
+  has_many :contracts, :dependent => :delete_all
 
   attr_accessible :email, :password, :password_confirmation,
                   :role, :firstname, :lastname, :company,
@@ -8,8 +8,7 @@ class User < ActiveRecord::Base
                   :city
 
   validates_uniqueness_of :email
-  validates_presence_of :email
-  #, :password_confirmation, :password_confirmation
+  validates_presence_of :email, :password_confirmation, :password_confirmation
   validates :password, :confirmation => true
 
   before_create { generate_token(:auth_token) }
@@ -33,6 +32,12 @@ class User < ActiveRecord::Base
 
   def role?(role)
     self.role == role.to_s
+  end
+
+  def disk_space
+    contracts.reduce(0) do |result, c|
+      result += c.documents.reduce(0) {|r, s| r += s.uploaded_file_file_size }
+    end
   end
 
   def file_number

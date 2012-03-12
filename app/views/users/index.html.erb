@@ -1,19 +1,20 @@
-<h1>Clients</h1>
+<div class="page-header">
+  <h1>Liste des Clients
+    <%= link_to 'Nouveau client', new_user_path, :class => 'btn btn-primary pull-right' %>
+  </h1>
+</div>
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>ID</th>
+      <th>Nom</th>
       <th>Email</th>
-      <th>Created at</th>
-      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.id %></td>
-        <td><%= link_to user.email, user_path(user) %></td>
-        <td><%= user.created_at %></td>
+        <td><%= user.name_tag %></td>
+        <td><%= user.email %></td>
         <td>
           <%= link_to 'Edit', edit_user_path(user), :class => 'btn btn-mini' %>
           <%= link_to 'Destroy', user_path(user), :method => :delete, :confirm => 'Etes vous sûr ?', :class => 'btn btn-mini btn-danger' %>
@@ -23,4 +24,3 @@
   </tbody>
 </table>
 
-<%= link_to 'New', new_user_path, :class => 'btn btn-primary' %>

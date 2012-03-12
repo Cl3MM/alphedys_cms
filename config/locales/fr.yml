@@ -7,3 +7,155 @@ fr:
             password_conifrmation : "Confirmation du mot de passe"
       messages:
         record_invalid: "Enregistrement Invalide"
+  # Used in distance_of_time_in_words(), distance_of_time_in_words_to_now(), time_ago_in_words()
+fr:
+  distance_in_words:
+    half_a_minute: "30 secondes"
+    less_than_x_seconds:
+      one:   "moins d'une seconde"
+      other: "moins de %{count} secondes"
+    x_seconds:
+      one:   "1 seconde"
+      other: "%{count} secondes"
+    less_than_x_minutes:
+      one:   "moins d'une minute"
+      other: "moins de %{count} minutes"
+    x_minutes:
+      one:   "1 minute"
+      other: "%{count} minutes"
+    about_x_hours:
+      one:   environ 1 heure
+      other: environ %{count} heures
+    x_days:
+      one:   "1 jour"
+      other: "%{count} jours"
+    about_x_months:
+      one:   "environ 1 mois"
+      other: "environ %{count} mois"
+    x_months:
+      one:   "1 mois"
+      other: "%{count} mois"
+    about_x_years:
+      one:   "environ 1 an"
+      other: "environ %{count} ans"
+    over_x_years:
+      one:   "plus d'1 anr"
+      other: "plus d %{count} ans"
+    almost_x_years:
+      one:   "presque 1 an"
+      other: "presque %{count} ans"
+  prompts:
+    year:   "An"
+    month:  "Mois"
+    day:    "Jour"
+    hour:   "Heure"
+    minute: "Minute"
+    second: "Seconde"
+
+
+################################################"
+fr:
+  datetime:
+    distance_in_words:
+      half_a_minute: "30 secondes"
+      less_than_x_seconds:
+        one:   "moins d'une seconde"
+        other: "moins de %{count} secondes"
+      x_seconds:
+        one:   "1 seconde"
+        other: "%{count} secondes"
+      less_than_x_minutes:
+        one:   "moins d'une minute"
+        other: "moins de %{count} minutes"
+      x_minutes:
+        one:   "1 minute"
+        other: "%{count} minutes"
+      about_x_hours:
+        one:   environ 1 heure
+        other: environ %{count} heures
+      x_days:
+        one:   "1 jour"
+        other: "%{count} jours"
+      about_x_months:
+        one:   "environ 1 mois"
+        other: "environ %{count} mois"
+      x_months:
+        one:   "1 mois"
+        other: "%{count} mois"
+      about_x_years:
+        one:   "environ 1 an"
+        other: "environ %{count} ans"
+      over_x_years:
+        one:   "plus d'1 anr"
+        other: "plus d %{count} ans"
+      almost_x_years:
+        one:   "presque 1 an"
+        other: "presque %{count} ans"
+    prompts:
+      year:   "An"
+      month:  "Mois"
+      day:    "Jour"
+      hour:   "Heure"
+      minute: "Minute"
+      second: "Seconde"
+
+  helpers:
+    select:
+      # Default value for :prompt => true in FormOptionsHelper
+      prompt: "Veuillez sélectionner"
+
+    # Default translation keys for submit and button FormHelper
+    submit:
+      create: 'Créer %{model}'
+      update: 'Mettre à jour %{model}'
+      submit: 'Enregistrer %{model}'
+fr:
+ number:
+    format:
+      separator: "."
+      delimiter: ","
+      precision: 3
+      significant: false
+      strip_insignificant_zeros: false
+
+    # Used in number_to_human_size() and number_to_human()
+    human:
+      format:
+        delimiter: ""
+        precision: 3
+        significant: true
+        strip_insignificant_zeros: true
+
+      # Used in number_to_human_size()
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: "octet"
+            other: "octets"
+          kb: "ko"
+          mb: "Mo"
+          gb: "Go"
+          tb: "To"
+
+      # Used in number_to_human()
+      decimal_units:
+        format: "%n %u"
+        units:
+          # femto: Quadrillionth
+          # pico: Trillionth
+          # nano: Billionth
+          # micro: Millionth
+          # mili: Thousandth
+          # centi: Hundredth
+          # deci: Tenth
+          unit: ""
+          # ten:
+          # one: Ten
+          # other: Tens
+          # hundred: Hundred
+          thousand: Millier
+          million: Million
+          billion: Milliard
+          trillion: Trillion
+          quadrillion: Quadrillion

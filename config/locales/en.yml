@@ -8,3 +8,14 @@ en:
         user:
           attributes:
             password_conifrmation : "Confirmation du mot de passe"
+en:
+  number:
+    human:
+      storage_units:
+        units:
+          mb: "mO"
+          byte: "octets"
+          kb: "kO"
+          gb: "GO"
+          tb: "TO"
+        format: "%n %u"

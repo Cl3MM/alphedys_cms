@@ -20,14 +20,13 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    session[:span] = 6 if current_user.is_admin?
   end
 
   def create
     @user = User.new(params[:user])
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_url, notice: "Votre compte à bien été créer !"
+      redirect_to root_url, notice: "Votre compte a bien été crée !"
     else
       render "new"
     end

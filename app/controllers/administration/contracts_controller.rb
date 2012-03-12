@@ -22,4 +22,15 @@ class Administration::ContractsController < ApplicationController
     @user = User.find_by_id(params[:user_id])
     @contract = @user.contracts.find_by_id(params[:id])
   end
+
+  def destroy
+    @user = User.find_by_id(params[:user_id])
+    @contract = @user.contracts.find_by_id(params[:id])
+    @contract.destroy
+
+    respond_to do |format|
+      format.html { redirect_to administration_user_path(@user) }
+      format.json { head :no_content }
+    end
+  end
 end
