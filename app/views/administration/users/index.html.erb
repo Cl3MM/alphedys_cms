@@ -2,16 +2,16 @@
   <span style="display:none;"></span>
 <% end %>
 <% content_for :breadcrumbs do %>
-<ul class="breadcrumb">
-  <li class="active">
-    <%= link_to "Administration", administration_users_path%>
-  </li>
-</ul>
+  <ul class="breadcrumb">
+    <li class="active">
+      <%= link_to "Administration", administration_users_path%>
+    </li>
+  </ul>
 <% end %>
 
 <div class="page-header">
   <h1>Liste des clients
-    <%= link_to "Nouveau Client", new_administration_user_path, :class => "btn btn-primary pull-right" %>
+    <%= link_to raw('<i class="icon-user icon-white"></i> Nouveau Client'), new_administration_user_path, :class => "btn btn-primary pull-right" %>
   </h1>
 </div>
 <table class="table table-striped table-bordered table-condensed">
@@ -29,7 +29,10 @@
     <% @users.each do |user| %>
       <tr>
         <td>
-          <%= print_upto( ((user.firstname && user.lastname).nil?  ? user.email : "#{user.firstname.capitalize} #{user.lastname.upcase}"), 30) %>
+          <i class="icon-user"></i>
+          <%= link_to print_upto( user.name_tag, 30),
+            administration_user_path(user),
+            %>
         </td>
         <td><%= user.contracts.size %></td>
         <td><%= user.file_number %></td>
@@ -37,9 +40,27 @@
         <td></td>
         <td>
           <div class="btn-group pull-right">
-            <%= link_to 'Voir', administration_user_path(user), :class => "btn btn-mini" %>
-            <%= link_to 'Modifier', edit_administration_user_path(user), :class => "btn btn-mini" %>
-            <%= link_to 'Supprimer', administration_user_path(user), :method => :delete, :confirm => 'Êtes vous sûr ?', :class => "btn btn-danger btn-mini" %>
+            <%= link_to raw('<i class="icon-eye-open"></i>'), administration_user_path(user),
+              :class => "btn btn-mini valign-top",
+              :title => "Voir la fiche client", :rel => "tooltip",
+            %>
+            <%= link_to raw('<i class="icon-edit"></i>'), edit_administration_user_path(user),
+              :class => "btn btn-mini",
+              :title => "Ajouter, supprimer les contrats et fichiers", :rel => "tooltip"
+            %>
+          <% if user.is_admin? %>
+            <a href="#" title="Impossible de supprimer un Administrateur" class="btn btn-danger btn-mini disabled" rel="tooltip">
+              <i class="icon-trash icon-white"></i>
+            </a>
+          <% else %>
+            <%= link_to( raw('<i class="icon-trash icon-white"></i>'),
+                administration_user_path(user),
+                :method => :delete,
+                :confirm => "Êtes vous sûr de vouloir supprimer l'utilisateur #{user.name_tag.upcase} ?",
+                :class => "btn btn-danger btn-mini",
+                :title => "Supprimer l'utilisateur", :rel => "tooltip")
+            %>
+          <% end -%>
           </div>
         </td>
       </tr>

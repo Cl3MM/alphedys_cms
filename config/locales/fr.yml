@@ -3,58 +3,40 @@ fr:
     errors:
       models:
         user:
+          password_conifrmation : "Confirmation du mot de passe"
+        contract:
           attributes:
-            password_conifrmation : "Confirmation du mot de passe"
+            name: "Nom"
+            blank: "Le champ NOM ne doit pas être vide"
+# translation missing: fr.activerecord.errors.models.contract.attributes.name.blank
+      template:
+        header:
+          one: "Impossible d'enregistrer {{model}}: 1 erreur"
+          other: "Impossible d'enregistrer {{model}}: {{count}} erreurs."
+        body: "Veuillez vérifier les champs suivants :"
       messages:
-        record_invalid: "Enregistrement Invalide"
-  # Used in distance_of_time_in_words(), distance_of_time_in_words_to_now(), time_ago_in_words()
-fr:
-  distance_in_words:
-    half_a_minute: "30 secondes"
-    less_than_x_seconds:
-      one:   "moins d'une seconde"
-      other: "moins de %{count} secondes"
-    x_seconds:
-      one:   "1 seconde"
-      other: "%{count} secondes"
-    less_than_x_minutes:
-      one:   "moins d'une minute"
-      other: "moins de %{count} minutes"
-    x_minutes:
-      one:   "1 minute"
-      other: "%{count} minutes"
-    about_x_hours:
-      one:   environ 1 heure
-      other: environ %{count} heures
-    x_days:
-      one:   "1 jour"
-      other: "%{count} jours"
-    about_x_months:
-      one:   "environ 1 mois"
-      other: "environ %{count} mois"
-    x_months:
-      one:   "1 mois"
-      other: "%{count} mois"
-    about_x_years:
-      one:   "environ 1 an"
-      other: "environ %{count} ans"
-    over_x_years:
-      one:   "plus d'1 anr"
-      other: "plus d %{count} ans"
-    almost_x_years:
-      one:   "presque 1 an"
-      other: "presque %{count} ans"
-  prompts:
-    year:   "An"
-    month:  "Mois"
-    day:    "Jour"
-    hour:   "Heure"
-    minute: "Minute"
-    second: "Seconde"
-
-
-################################################"
-fr:
+        inclusion: "n'est pas inclus(e) dans la liste"
+        exclusion: "n'est pas disponible"
+        invalid: "n'est pas valide"
+        confirmation: "ne concorde pas avec la confirmation"
+        accepted: "doit être accepté(e)"
+        empty: "doit être rempli(e)"
+        blank: "doit être rempli(e)"
+        too_long: "est trop long (pas plus de {{count}} caractères)"
+        too_short: "est trop court (au moins {{count}} caractères)"
+        wrong_length: "ne fait pas la bonne longueur (doit comporter {{count}} caractères)"
+        taken: "n'est pas disponible"
+        not_a_number: "n'est pas un nombre"
+        greater_than: "doit être supérieur à {{count}}"
+        greater_than_or_equal_to: "doit être supérieur ou égal à {{count}}"
+        equal_to: "doit être égal à {{count}}"
+        less_than: "doit être inférieur à {{count}}"
+        less_than_or_equal_to: "doit être inférieur ou égal à {{count}}"
+        odd: "doit être impair"
+        even: "doit être pair"
+        record_invalid: "La validation a échoué : {{errors}}"
+      full_messages:
+        format: "{{attribute}} {{message}}"
   datetime:
     distance_in_words:
       half_a_minute: "30 secondes"
@@ -71,8 +53,8 @@ fr:
         one:   "1 minute"
         other: "%{count} minutes"
       about_x_hours:
-        one:   environ 1 heure
-        other: environ %{count} heures
+        one:   "environ 1 heure"
+        other: "environ %{count} heures"
       x_days:
         one:   "1 jour"
         other: "%{count} jours"
@@ -86,7 +68,7 @@ fr:
         one:   "environ 1 an"
         other: "environ %{count} ans"
       over_x_years:
-        one:   "plus d'1 anr"
+        one:   "plus d'1 an"
         other: "plus d %{count} ans"
       almost_x_years:
         one:   "presque 1 an"
@@ -109,8 +91,7 @@ fr:
       create: 'Créer %{model}'
       update: 'Mettre à jour %{model}'
       submit: 'Enregistrer %{model}'
-fr:
- number:
+  number:
     format:
       separator: "."
       delimiter: ","

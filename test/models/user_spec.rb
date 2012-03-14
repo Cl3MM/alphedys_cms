@@ -28,10 +28,11 @@ describe User do
       admin = Factory(:user)
       visit login_path
       click_link "password"
-      fill_in "Email", :with => user.email
+      fill_in "Email", :with => admin.email
       click_button "Log in"
-      visit users_path
-      page.should have_content("Email sent")
+      visit administration_users_path
+      page.should have_content(:admin.email)
+      page.should have_content(:user.email)
     end
   end
 end
