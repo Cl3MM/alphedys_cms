@@ -1,10 +1,11 @@
 fr:
   date:
+    day_names: [Lundi, Mardi, Mercredi, Jeudi, Vendredi, Samedi, Dimanche]
+    month_names: [~, Janvier, Février, Mars, Avril, Mai, Juin, Juillet, Août, Septembre, Octobre, Novembre, Décembre]
     formats:
       default: "%Y-%m-%d"
       short: "%b %d"
       long: "%B %d, %Y"
-
     order:
       - :year
       - :month
