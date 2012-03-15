@@ -1,26 +1,3 @@
-<% content_for :breadcrumbs do %>
-<ul class="breadcrumb">
-  <li>
-    <%= link_to "Administration", administration_users_path %>
-    <span class="divider">/</span>
-  </li>
-  <li>
-    <%= link_to "Utilisateur : #{@user.name_tag}", administration_user_path(@user)%>
-    <span class="divider">/</span>
-  </li>
-  <li class="active">
-    <%= link_to "Nouveau Contrat", new_administration_user_contract_path(@user)%>
-  </li>
-</ul>
-<% end %>
-
-<div class="page-header">
-  <h2>
-    Nouveau contrat
-    <small> pour <%= @user.name_tag %></small>
-  </h2>
-</div>
-
 <%= simple_form_for [:administration, @user, @contract], :html => { :class => 'form-horizontal' } do |f| %>
   <fieldset>
     <%= f.error_notification %>
@@ -41,7 +18,7 @@
     <%= f.input :start_date, label: "Date de début" %>
     <%= f.input :end_date, label: "Date de fin"  %>
     <div class="form-actions">
-      <%= f.button :submit, "Créer contrat", :class => "btn btn-primary" %>
+      <%= f.button :submit, btn, :class => "btn btn-primary" %>
       <%= link_to "Annuler", administration_user_path(@user), :class => "btn" %>
     </div>
   </fieldset>

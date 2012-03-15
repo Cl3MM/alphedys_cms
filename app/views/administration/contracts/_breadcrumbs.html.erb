@@ -1,0 +1,16 @@
+<% content_for :breadcrumbs do %>
+<ul class="breadcrumb">
+  <li>
+    <%= link_to "Administration", administration_users_path %>
+    <span class="divider">/</span>
+  </li>
+  <li>
+    <%= link_to "Utilisateur : #{@user.name_tag}", administration_user_path(@user)%>
+    <span class="divider">/</span>
+  </li>
+  <li class="active">
+    <%= link_to "Nouveau Contrat", new_administration_user_contract_path(@user)%>
+  </li>
+</ul>
+<% end %>
+

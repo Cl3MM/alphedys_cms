@@ -46,7 +46,7 @@
   <%= f.error_notification %>
   <% if @user.errors.any? %>
     <div class="alert alert-error">
-      <h4 class="alert-heading">Form is invalid</h4>
+      <h4 class="alert-heading">Des erreurs ont été rencontré</h4>
       <a class="close" data-dismiss="alert">&times;</a>
       <ul>
         <% @user.errors.full_messages.each do |message| %>
@@ -55,7 +55,7 @@
       </ul>
     </div>
   <% end %>
-
+  <%= f.hidden_field :create_by, :value => current_user.id %>
   <%= f.input :uploaded_file, label: "Fichier à ajouter", prompt: "salut" %>
   <div class="form-actions">
     <%= f.submit "Ajouter un document", :class => 'btn btn-primary' %>

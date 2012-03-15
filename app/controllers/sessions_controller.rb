@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class SessionsController < ApplicationController
   def new
     if logged_in?
@@ -14,18 +15,18 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       if user.is_admin?
         session[:span] = 8
-        redirect_to administration_users_url, notice: "Welcome #{user.name_tag}!"
+        redirect_to administration_users_url, notice: "Bienvenue #{user.name_tag} !"
       else
-        redirect_to user, notice: "Welcome #{user.name_tag}!"
+        redirect_to user, notice: "Bienvenue #{user.name_tag} !"
       end
     else
-      flash.now.alert = "Email or password is invalid"
+      flash.now.alert = "Email ou mot de passe invalide"
       render "new"
     end
   end
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_url, notice: "Logged out!"
+    redirect_to root_url, notice: "Vous êtes maintenant déconnecté !"
   end
 end

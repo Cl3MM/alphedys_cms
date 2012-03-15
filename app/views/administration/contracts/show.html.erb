@@ -52,15 +52,15 @@
             <div class="btn-group pull-right">
               <%= link_to raw('<i class="icon-download icon-white"></i>'), admin_download_url(document),
                 :class => "btn btn-info btn-mini",
-                :title => "Télécharger le fichier", :rel => "tooltip" %>
+                :title => "Télécharger la version la plus récente du fichier", :rel => "tooltip" %>
               <%= link_to raw('<i class="icon-eye-open"></i>'),
                 administration_user_contract_document_path(@user,@contract,document),
                 :class => "btn btn-mini",
-                :title => "Voir le fichier", :rel => "tooltip" %>
+                :title => "Voir l'historique du fichier", :rel => "tooltip" %>
               <%= link_to raw('<i class="icon-edit"></i>'),
                 edit_administration_user_contract_document_path(@user, @contract, document),
                 :class => "btn btn-mini",
-                :title => "Modifier le fichier", :rel => "tooltip" %>
+                :title => "Uploader une version plus récente du fichier", :rel => "tooltip" %>
               <%= link_to raw('<i class="icon-trash icon-white"></i>'),
                 administration_user_contract_document_path(@user, @contract, document),
                 :method => :delete, :class => "btn btn-danger btn-mini",

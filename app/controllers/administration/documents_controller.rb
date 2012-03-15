@@ -6,6 +6,12 @@ class Administration::DocumentsController < ApplicationController
     if current_user.is_admin?
       document = Document.find_by_id(params[:id])
       if document
+        params[:vid] ||= -1
+        # On récupère les numéros de version pourle document
+        versions = (document.versions.map{|n| n.number} << 1).map{|c| c.to_s}
+        # si le numéro de version passé en paramètre n'existe pas, on prend le plus grand
+        version_number = (versions.include?(params[:vid]) ? params[:vid] : versions.max)
+        document.revert_to(version_number.to_i)
         send_file document.uploaded_file.path, :type => document.uploaded_file_content_type
       end
     end
@@ -47,6 +53,7 @@ class Administration::DocumentsController < ApplicationController
   end
 
   def create
+    #binding.pry
     @user = User.find_by_id(params[:user_id])
     @contract = @user.contracts.find_by_id(params[:contract_id])
     if params[:document].nil?

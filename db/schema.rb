@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120307154321) do
+ActiveRecord::Schema.define(:version => 20120314163350) do
 
   create_table "contracts", :force => true do |t|
     t.integer  "user_id"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20120307154321) do
     t.string   "uploaded_file_content_type"
     t.integer  "uploaded_file_file_size"
     t.datetime "uploaded_file_updated_at"
+    t.integer  "create_by"
   end
 
   add_index "documents", ["contract_id"], :name => "index_documents_on_contract_id"
