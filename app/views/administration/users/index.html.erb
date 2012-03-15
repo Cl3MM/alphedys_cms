@@ -42,11 +42,11 @@
           <div class="btn-group pull-right">
             <%= link_to raw('<i class="icon-eye-open"></i>'), administration_user_path(user),
               :class => "btn btn-mini valign-top",
-              :title => "Voir la fiche client", :rel => "tooltip",
+              :title => "Voir, ajouter, supprimer les contrats et fichiers de #{user.name_tag}", :rel => "tooltip",
             %>
             <%= link_to raw('<i class="icon-edit"></i>'), edit_administration_user_path(user),
               :class => "btn btn-mini",
-              :title => "Ajouter, supprimer les contrats et fichiers", :rel => "tooltip"
+              :title => "Modifier les informations client", :rel => "tooltip"
             %>
           <% if user.is_admin? %>
             <a href="#" title="Impossible de supprimer un Administrateur" class="btn btn-danger btn-mini disabled" rel="tooltip">

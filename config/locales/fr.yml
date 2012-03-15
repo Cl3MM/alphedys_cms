@@ -1,9 +1,23 @@
 fr:
   activerecord:
+    models:
+      user: "Client"
+    attributes:
+      user:
+        password: "Mot de passe"
+        email: "Adresse email"
+        password_confirmation : "Confirmation du mot de passe"
+      contract:
+        price: "Prix"
     errors:
       models:
         user:
-          password_conifrmation : "Confirmation du mot de passe"
+          email: "Adresse email"
+          password: "Mot de passe"
+          password_confirmation : "Confirmation du mot de passe"
+          attributes:
+            email: "Adresse email"
+            password: "Mot de passe"
         contract:
           attributes:
             name: "Nom"
@@ -11,10 +25,11 @@ fr:
 # translation missing: fr.activerecord.errors.models.contract.attributes.name.blank
       template:
         header:
-          one: "Impossible d'enregistrer {{model}}: 1 erreur"
-          other: "Impossible d'enregistrer {{model}}: {{count}} erreurs."
+          one: "Impossible d'enregistrer %{model}: 1 erreur"
+          other: "Impossible d'enregistrer %{model}: %{count} erreurs."
         body: "Veuillez vérifier les champs suivants :"
       messages:
+        password: "Mot de passe"
         inclusion: "n'est pas inclus(e) dans la liste"
         exclusion: "n'est pas disponible"
         invalid: "n'est pas valide"
@@ -22,21 +37,21 @@ fr:
         accepted: "doit être accepté(e)"
         empty: "doit être rempli(e)"
         blank: "doit être rempli(e)"
-        too_long: "est trop long (pas plus de {{count}} caractères)"
-        too_short: "est trop court (au moins {{count}} caractères)"
-        wrong_length: "ne fait pas la bonne longueur (doit comporter {{count}} caractères)"
+        too_long: "est trop long (pas plus de %{count} caractères)"
+        too_short: "est trop court (au moins %{count} caractères)"
+        wrong_length: "ne fait pas la bonne longueur (doit comporter %{count} caractères)"
         taken: "n'est pas disponible"
         not_a_number: "n'est pas un nombre"
-        greater_than: "doit être supérieur à {{count}}"
-        greater_than_or_equal_to: "doit être supérieur ou égal à {{count}}"
-        equal_to: "doit être égal à {{count}}"
-        less_than: "doit être inférieur à {{count}}"
-        less_than_or_equal_to: "doit être inférieur ou égal à {{count}}"
+        greater_than: "doit être supérieur à %{count}"
+        greater_than_or_equal_to: "doit être supérieur ou égal à %{count}"
+        equal_to: "doit être égal à %{count}"
+        less_than: "doit être inférieur à %{count}"
+        less_than_or_equal_to: "doit être inférieur ou égal à %{count}"
         odd: "doit être impair"
         even: "doit être pair"
-        record_invalid: "La validation a échoué : {{errors}}"
+        record_invalid: "La validation a échoué : %{errors}"
       full_messages:
-        format: "{{attribute}} {{message}}"
+        format: "%{attribute} %{message}"
   datetime:
     distance_in_words:
       half_a_minute: "30 secondes"

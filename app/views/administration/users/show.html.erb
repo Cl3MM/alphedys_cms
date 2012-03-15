@@ -1,24 +1,26 @@
-<% content_for :breadcrumbs do %>
-  <ul class="breadcrumb">
-    <li>
-      <%= link_to "Administration", administration_users_path %>
-      <span class="divider">/</span>
-    </li>
-    <li class="active">
-      <%= link_to "Utilisateur : #{@user.name_tag}", administration_user_path(@user)%>
-    </li>
-  </ul>
+<% content_for :right_pane do %>
+  <div class="span2">
+    <div class="page-header">
+      <h2>Détails client</h2>
+    </div>
+      <address>
+        <%= address_tag @user %>
+      </address>
+      <p>
+        <%= details_tag @user %>
+      </p>
+    </div>
 <% end %>
 
-<div class="page-header">
-  <h2>
-    Contrats
-    <small> appartenant à <%= @user.name_tag %></small>
-    <%= link_to raw('<i class="icon-plus-sign icon-white"></i> Nouveau contrat'),
-      new_administration_user_contract_path(@user),
-      :class => 'btn btn-primary pull-right', :title => "Créer un nouveau contrat", :rel => "tooltip" %>
-  </h2>
-</div>
+<% title = raw("Contrats<small> appartenant à #{@user.name_tag}</small>") +
+  link_to(raw('<i class="icon-plus-sign icon-white"></i> Nouveau contrat'),
+          new_administration_user_contract_path(@user),
+          :class => 'btn btn-primary pull-right',
+          :title => "Créer un nouveau contrat",
+          :rel => "tooltip") %>
+
+<%= render :partial => "breadcrumbs", :locals => { :title => title } %>
+
 <% unless @user.contracts.empty? %>
   <% @user.contracts.each_with_index do |contract, index| %>
     <div class="alert alert-info">
@@ -27,7 +29,7 @@
         <div class="btn-group pull-right">
                 <%= link_to raw('<i class="icon-eye-open"></i>'),
                   administration_user_contract_path(@user, contract),
-                  :title => "Voir le contrat", :rel => "tooltip",
+                  :title => "Voir les détails du contrat (fichiers)", :rel => "tooltip",
                   :class => "btn btn-small" %>
                 <%= link_to raw('<i class="icon-edit"></i>'),
                   edit_administration_user_contract_path(@user, contract),

@@ -5,7 +5,7 @@
     <span class="divider">/</span>
   </li>
   <li class="active">
-    <%= link_to (@user.nil? ? "Nouvel Utilisateur" : @user.name_tag), new_administration_user_path%>
+    <%= link_to (@user.nil? ? "Nouvel Utilisateur" : "Utilisateur : #{@user.name_tag}"), new_administration_user_path%>
   </li>
 </ul>
 <% end %>

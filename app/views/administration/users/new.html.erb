@@ -3,7 +3,7 @@
 <%= simple_form_for [:administration, @user], :html => { :class => 'form-horizontal' } do |f| %>
   <% if @user.errors.any? %>
     <div class="alert alert-error">
-      <h4 class="alert-heading">Form is invalid</h4>
+      <h4 class="alert-heading">Le formulaire n'est pas valide</h4>
       <a class="close" data-dismiss="alert">&times;</a>
       <ul>
         <% @user.errors.full_messages.each do |message| %>
