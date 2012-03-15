@@ -1,4 +1,14 @@
 fr:
+  date:
+    formats:
+      default: "%Y-%m-%d"
+      short: "%b %d"
+      long: "%B %d, %Y"
+
+    order:
+      - :year
+      - :month
+      - :day
   activerecord:
     models:
       user: "Client"
