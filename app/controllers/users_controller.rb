@@ -19,7 +19,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    #@user = User.find(params[:id])
+    @user = current_user
   end
 
   def create
@@ -35,7 +36,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
-      redirect_to root_url, notice: "Votre profil a été mis à jour avec succès !"
+      redirect_to @user, notice: "Votre profil a été mis à jour avec succès !"
     else
       render "edit"
     end
