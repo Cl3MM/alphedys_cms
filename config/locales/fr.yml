@@ -9,6 +9,8 @@ fr:
         password_confirmation : "Confirmation du mot de passe"
       contract:
         price: "Prix"
+        start_date: "Date de début"
+        end_date: "Date de fin"
     errors:
       models:
         user:
