@@ -4,7 +4,7 @@
 <% content_for :breadcrumbs do %>
   <ul class="breadcrumb">
     <li class="active">
-      <%= link_to "Administration", administration_users_path%>
+      <%= link_to "Administration", administration_users_path %>
     </li>
   </ul>
 <% end %>
@@ -30,9 +30,7 @@
       <tr>
         <td>
           <i class="icon-user"></i>
-          <%= link_to print_upto( user.name_tag, 30),
-            administration_user_path(user),
-            %>
+          <%= link_to print_upto( user.name_tag, 30), administration_user_path(user) %>
         </td>
         <td><%= user.contracts.size %></td>
         <td><%= user.file_number %></td>
