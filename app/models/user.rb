@@ -7,9 +7,14 @@ class User < ActiveRecord::Base
                   :phone, :cellphone, :fax, :street, :zip,
                   :city
 
-  validates_uniqueness_of :email
-  validates_presence_of :email, :password_confirmation, :password_confirmation
-  validates :password, :confirmation => true
+  validates_uniqueness_of :email, :on => :create
+  validates_presence_of :email
+  validates :password,
+    :confirmation => true,
+    :length => { :minimum => 10, :maximum => 40 },
+    :on => :create
+
+  validates_presence_of :password_confirmation, :on => :create
 
   before_create { generate_token(:auth_token) }
 

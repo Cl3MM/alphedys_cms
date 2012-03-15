@@ -1,18 +1,4 @@
-<% content_for :breadcrumbs do %>
-<ul class="breadcrumb">
-  <li>
-    <%= link_to "Administration", administration_users_path %>
-    <span class="divider">/</span>
-  </li>
-  <li class="active">
-    <%= link_to "Nouvel Utilisateur", new_administration_user_path%>
-  </li>
-</ul>
-<% end %>
-
-<div class="page-header">
-  <h2>Ajout d'un nouveau client </h2>
-</div>
+<%= render :partial => "breadcrumbs", :locals => { :title => "Ajout d'un nouveau client"} %>
 
 <%= simple_form_for [:administration, @user], :html => { :class => 'form-horizontal' } do |f| %>
   <% if @user.errors.any? %>
@@ -27,7 +13,6 @@
     </div>
   <% end %>
   <fieldset>
-
     <%= f.input :email, label: "Adresse email", hint: "Cette adresse sera votre identifiant de connexion." %>
     <%= f.input :password, label: "Mot de passe" %>
     <%= f.input :password_confirmation, label: "Confirmer le mot de passe" %>
@@ -39,4 +24,3 @@
     </div>
   </fieldset>
 <% end -%>
-

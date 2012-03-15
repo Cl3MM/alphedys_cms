@@ -8,8 +8,27 @@ class Administration::UsersController < ApplicationController
   def index
     @users = User.find(:all)
   end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
   def show
     @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find_by_id(params[:id])
+    #binding.pry
+    respond_to do |format|
+      format.html {
+        if @user.update_attributes(params[:user])
+          redirect_to administration_user_url(@user), :notice => "Les informations de l'utilisateur #{@user.name_tag} ont été modifiées !"
+        else
+          render "edit", :error => "Une erreur est survenue lors de la mise à jour de l'utilisateur #{@user.name_tag}."
+        end
+      }
+    end
   end
 
   def create
@@ -20,6 +39,7 @@ class Administration::UsersController < ApplicationController
       render new_administration_user_path(@user), :error => "Une erreur est survenue lors de la création de l'utilisateur #{@user.name_tag}. Merci de recommencer."
     end
   end
+
   # DELETE /users/1
   def destroy
     @user = User.find(params[:id])

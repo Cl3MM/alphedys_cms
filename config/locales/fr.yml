@@ -131,12 +131,24 @@ fr:
           # centi: Hundredth
           # deci: Tenth
           unit: ""
-          # ten:
-          # one: Ten
-          # other: Tens
-          # hundred: Hundred
-          thousand: Millier
-          million: Million
-          billion: Milliard
-          trillion: Trillion
-          quadrillion: Quadrillion
+          ten:
+            one: dix
+            other: dix
+          hundred:
+            one: centaine
+            other: centaines
+          thousand:
+            one: Millier
+            other: Millier
+          million:
+            one: Milliion
+            other: Millions
+          billion:
+            one: Milliard
+            other: Milliards
+          trillion:
+            one: Trillion
+            other: Trillions
+          quadrillion:
+            one: Trilliard
+            other: Trilliards

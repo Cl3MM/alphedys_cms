@@ -1,0 +1,14 @@
+<% content_for :breadcrumbs do %>
+<ul class="breadcrumb">
+  <li>
+    <%= link_to "Administration", administration_users_path %>
+    <span class="divider">/</span>
+  </li>
+  <li class="active">
+    <%= link_to (@user.nil? ? "Nouvel Utilisateur" : @user.name_tag), new_administration_user_path%>
+  </li>
+</ul>
+<% end %>
+<div class="page-header">
+  <h2><%= title %></h2>
+</div>

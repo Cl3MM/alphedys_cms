@@ -1,18 +1,17 @@
 <%= simple_form_for [:administration, @user, @contract], :html => { :class => 'form-horizontal' } do |f| %>
   <fieldset>
     <%= f.error_notification %>
-  <% if @user.errors.any? %>
-    <div class="alert alert-error">
-      <h4 class="alert-heading">Form is invalid</h4>
-      <a class="close" data-dismiss="alert">&times;</a>
-      <ul>
-        <% @user.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+    <% if @user.errors.any? %>
+      <div class="alert alert-error">
+        <h4 class="alert-heading">Le formulaire est invalide</h4>
+        <a class="close" data-dismiss="alert">&times;</a>
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
     <%= f.input :name, label: "Nom" %>
     <%= f.input :price, hint: "Prix en EUR"  %>
     <%= f.input :start_date, label: "Date de début" %>

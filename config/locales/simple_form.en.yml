@@ -13,7 +13,7 @@ en:
     # Labels and hints examples
     labels:
       password_conifrmation: "Confirmation du mot de passe"
-    #   password: 'Password'
+      password: 'Le mot de passe'
     #   user:
     #     new:
     #       email: 'E-mail para efetuar o sign in.'
