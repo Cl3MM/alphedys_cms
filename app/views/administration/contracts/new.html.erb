@@ -1,3 +1,3 @@
 <%= render :partial => 'breadcrumbs' %>
-<%= render :partial => 'header', :locals => { :title => "Créer un nouveau contrat "}%>
-<%= render :partial => 'form', :locals => { :btn => "Créer le contrat" }%>
+<%= render :partial => 'header', :locals => { :title => raw("Créer un nouveau contrat <small>pour #{@user.name_tag}</small>") }%>
+<%= render :partial => 'form', :locals => {:btn => "Créer le contrat"} %>

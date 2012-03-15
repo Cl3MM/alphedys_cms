@@ -8,6 +8,7 @@
       </address>
       <p>
         <%= details_tag @user %>
+        <small>[<%= link_to "Modifier", edit_administration_user_path(@user) %>]</small>
       </p>
     </div>
 <% end %>

@@ -12,4 +12,12 @@ module UsersHelper
       "%s " % (user.zip.blank? ? "CP non spécifié" : user.zip) + \
       "%s<br/>" % (user.city.blank? ? "Ville non spécifiée" : user.city)
   end
+
+  def contract_details_tag (user)
+    return   raw(
+              "<strong>Nombre de contrats :</strong> %s" % (user.contracts.size == 0 ? "aucun" : "#{user.contracts.size}<br/>") + \
+              "<strong>Nombre de fichiers :</strong> %s" % (user.file_number == 0 ? "aucun" : "#{user.file_number}<br/>") + \
+              ("<strong>Espace disque</strong> : #{number_to_human_size user.disk_space}" if user.disk_space > 0)
+              )
+  end
 end
