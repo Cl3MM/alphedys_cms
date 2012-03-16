@@ -1,23 +1,25 @@
-<%= simple_form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.error_notification %>
-  <fieldset>
-    <legend>Informations personnelles</legend>
-    <%= f.input :lastname, label: "Nom" %>
-    <%= f.input :firstname, label: "Prénom" %>
-    <%= f.input :company, label: "Entreprise" %>
-    <legend>Informations de connexion</legend>
-    <%= f.input :email, label: "Adresse email", hint: link_to("Changer votre mot de passe", new_password_reset_path)  %>
-    <legend>Coordonnées</legend>
-    <%= f.input :street, label: "Adresse" %>
-    <%= f.input :zip, label: "Code Postal" %>
-    <%= f.input :city, label: "Ville" %>
-    <%= f.error :base %>
-    <%= f.input :phone, label: "Téléphone Fixe" %>
-    <%= f.input :cellphone, label: "Téléphone Portable" %>
-    <%= f.input :fax, label: "Télécopie" %>
-    <div class="form-actions">
-      <%= f.button :submit, label: "Mettre à jour", :class => 'btn-primary' %>
-      <%= link_to 'Annuler', user_path(@user), :type => :reset, :class => "btn" %>
-    </div>
-  </fieldset>
-<% end -%>
+<div class="span6 offset3">
+  <%= simple_form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
+    <%= f.error_notification %>
+    <fieldset>
+      <legend>Informations personnelles</legend>
+      <%= f.input :lastname, label: "Nom" %>
+      <%= f.input :firstname, label: "Prénom" %>
+      <%= f.input :company, label: "Entreprise" %>
+      <legend>Informations de connexion</legend>
+      <%= f.input :email, label: "Adresse email", hint: link_to("Changer votre mot de passe", new_password_reset_path)  %>
+      <legend>Coordonnées</legend>
+      <%= f.input :street, label: "Adresse" %>
+      <%= f.input :zip, label: "Code Postal" %>
+      <%= f.input :city, label: "Ville" %>
+      <%= f.error :base %>
+      <%= f.input :phone, label: "Téléphone Fixe" %>
+      <%= f.input :cellphone, label: "Téléphone Portable" %>
+      <%= f.input :fax, label: "Télécopie" %>
+      <div class="form-actions">
+        <%= f.button :submit, label: "Mettre à jour", :class => 'btn-primary' %>
+        <%= link_to 'Annuler', user_path(@user), :type => :reset, :class => "btn" %>
+      </div>
+    </fieldset>
+  <% end -%>
+</div>

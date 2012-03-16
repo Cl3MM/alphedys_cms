@@ -1,12 +1,12 @@
 <% content_for :right_pane do %>
-  <h3>Mes informations</h3>
+  <h1>Mes informations</h3>
   <hr/>
   <address>
     <%= address_tag @user %>
   </address>
   <p>
     <%= details_tag @user %>
-    <small>[<%= link_to "Modifier", edit_administration_user_path(@user) %>]</small>
+    <small>[<%= link_to "Modifier", edit_user_path(@user) %>]</small>
   </p>
 
   <h3>Statistiques</h3>
@@ -24,15 +24,13 @@
   </p>
 <% end %>
 
-<div class="page-header">
-  <h2>Détails du compte de l'utilisateur <%= @user.name_tag %> </h2>
-</div>
-<h3>Contrats </h2>
-<hr/>
-<%= render :partial => 'contracts' %>
-      <!--      <div class="span3">
-        <h3>Derniers fichiers ajoutés </h2>
-        <hr/>
-      </div>
-      -->
+<% content_for :breadcrumbs do %>
+<ul class="breadcrumb">
+  <li class="active">
+    <i class="icon-home"></i>
+    <%= link_to "Mes contrats", user_path(current_user) %>
+  </li>
+</ul>
+<% end %>
 
+<%= render :partial => 'contracts' %>

@@ -1,29 +1,10 @@
-<h1>Contract</h1>
-
-<p>
-  <b>User</b><br>
-  <%= @contract.user_id %>
-</p>
-
-<p>
-  <b>Name</b><br>
-  <%= @contract.name %>
-</p>
-
-<p>
-  <b>Price</b><br>
-  <%= @contract.price %>
-</p>
-
-<p>
-  <b>Startdate</b><br>
-  <%= @contract.start_date %>
-</p>
-
-<p>
-  <b>Endate</b><br>
-  <%= @contract.end_date %>
-</p>
+<h1>Fichiers associés au contrat <%= @contract.name.capitalize %></h1>
+<hr/>
+<% if @contract.documents.empty? %>
+  <p>Aucun fichier : <%= link_to "Ajouter un fichier", new_user_contract_document_path(current_user,@contract) %></p>
+<% else %>
+  <%= render :partial => 'documents' %>
+<% end -%>
 
 <div class="form-actions">
   <%= link_to 'Back', user_path(current_user), :class => 'btn'  %>

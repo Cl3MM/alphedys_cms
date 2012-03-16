@@ -1,3 +1,5 @@
+<h1>Mes contrats</h1>
+<hr/>
 <table class="table table-striped table-bordered table-condensed">
   <thead>
     <tr>
@@ -12,7 +14,7 @@
     <% @user.contracts.order("created_at DESC").each_with_index do |contract, index| %>
       <tr>
         <td><%= "#{index+1}." %></td>
-        <td><%= contract.name.capitalize %></td>
+        <td><%= link_to contract.name.capitalize, user_contract_path(@user, contract) %></td>
         <td><%= contract.documents.size %></td>
         <td>
           <span rel="tooltip" title="Crée le <%= I18n.localize(contract.created_at, :format => "%d %B %Y")  %>">
@@ -20,7 +22,12 @@
           </span>
         </td>
         <td>
-          <%= contract.created_at %>
+          <div class="btn-group pull-right">
+            <%= link_to raw('<i class="icon-eye-open"></i>'), user_contract_path(@user, contract),
+              :class => "btn btn-mini valign-top",
+              :title => "Voir les détails du contrat et les fichiers associés", :rel => "tooltip"
+            %>
+          </div>
         </td>
       </tr>
     <% end -%>
