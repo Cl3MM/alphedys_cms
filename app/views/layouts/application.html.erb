@@ -66,26 +66,46 @@
     </div>
 
     <div class="container">
-      <div class="row">
+      <div class="row-fluid">
+
         <% if content_for?(:breadcrumbs) %>
-          <div class="span8 offset2">
-            <%= yield(:breadcrumbs)  %>
+          <!-- Breadcrumbs -->
+          <div class="row">
+            <div class="span12">
+              <%= yield(:breadcrumbs)  %>
+            </div>
           </div>
         <% end -%>
+
         <% flash.each do |name, msg| %>
-          <div class="span8 offset2">
-            <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
-              <a class="close" data-dismiss="alert">&times;</a>
-              <%= msg %>
+          <!-- Flash -->
+          <div class="row">
+            <div class="span12">
+              <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+                <a class="close" data-dismiss="alert">&times;</a>
+                <%= msg %>
+              </div>
             </div>
           </div>
         <% end %>
-        <%=  %>
-        <div class="span<%=  session[:span].nil? ? "6" : session[:span] %> offset2">
-          <%= yield %>
+
+        <div class="row">
+        <% if content_for?(:right_pane) %>
+          <div class="span9">
+        <% else %>
+          <div class="span12">
+        <% end -%>
+            <%= yield %>
+          </div>
+
+        <% if content_for?(:right_pane) %>
+          <div class="span3">
+            <%= yield :right_pane %>
+          </div>
+        <% end -%>
         </div>
-        <% about = '<div class="span2"><div class="page-header"><h2>A propos</h2></div>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>' %>
-        <%= yield(:right_pane) if content_for?(:right_pane) %>
+
+
       </div>
     </div>
   </body>

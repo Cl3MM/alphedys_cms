@@ -1,48 +1,38 @@
 <% content_for :right_pane do %>
-      <div class="span2">
-        <h3>Mes informations</h3>
-        <hr/>
-        <address>
-          <%= address_tag @user %>
-        </address>
-        <p>
-          <%= details_tag @user %>
-          <small>[<%= link_to "Modifier", edit_administration_user_path(@user) %>]</small>
-        </p>
+  <h3>Mes informations</h3>
+  <hr/>
+  <address>
+    <%= address_tag @user %>
+  </address>
+  <p>
+    <%= details_tag @user %>
+    <small>[<%= link_to "Modifier", edit_administration_user_path(@user) %>]</small>
+  </p>
 
-        <h3>Statistiques</h3>
-        <hr/>
-        <p>
-          <%= contract_details_tag @user %>
-        </p>
-        <hr/>
-        <p>
-          <strong>TODO : app/view/users/show.html.erb</strong>
-          <br/>
-          <strong>Dernière Connexion</strong> : TODO
-          <br/>
-          <strong>Derniers fichiers ajoutés</strong> : TODO
-        </p>
-      </div>
+  <h3>Statistiques</h3>
+  <hr/>
+  <p>
+    <%= contract_details_tag @user %>
+  </p>
+  <hr/>
+  <p>
+    <strong>TODO : app/view/users/show.html.erb</strong>
+    <br/>
+    <strong>Dernière Connexion</strong> : TODO
+    <br/>
+    <strong>Derniers fichiers ajoutés</strong> : TODO
+  </p>
 <% end %>
 
-<div class="row">
-  <div class="span8">
-    <div class="page-header">
-      <h2>Détails du compte de l'utilisateur <%= @user.name_tag %> </h2>
-    </div>
-    <div class="row">
-      <div class="span4">
-        <h3>Contrats </h2>
-        <hr/>
-        <% @user.contracts.each do |contrat|%>
-          <%= contrat.name %>
-        <% end -%>
-      </div>
-      <div class="span3">
+<div class="page-header">
+  <h2>Détails du compte de l'utilisateur <%= @user.name_tag %> </h2>
+</div>
+<h3>Contrats </h2>
+<hr/>
+<%= render :partial => 'contracts' %>
+      <!--      <div class="span3">
         <h3>Derniers fichiers ajoutés </h2>
         <hr/>
       </div>
-    </div>
-  </div>
-</div>
+      -->
+

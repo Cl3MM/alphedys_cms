@@ -1,16 +1,14 @@
 <% content_for :right_pane do %>
-  <div class="span2">
-    <div class="page-header">
-      <h2>Détails client</h2>
-    </div>
-      <address>
-        <%= address_tag @user %>
-      </address>
-      <p>
-        <%= details_tag @user %>
-        <small>[<%= link_to "Modifier", edit_administration_user_path(@user) %>]</small>
-      </p>
-    </div>
+  <div class="page-header">
+    <h2>Détails client</h2>
+  </div>
+  <address>
+    <%= address_tag @user %>
+  </address>
+  <p>
+    <%= details_tag @user %>
+    <small>[<%= link_to "Modifier", edit_administration_user_path(@user) %>]</small>
+  </p>
 <% end %>
 
 <% title = raw("Contrats<small> appartenant à #{@user.name_tag}</small>") +
