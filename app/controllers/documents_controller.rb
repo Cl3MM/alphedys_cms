@@ -19,7 +19,8 @@ class DocumentsController < ApplicationController
   # GET /documents/1
   # GET /documents/1.json
   def show
-    @document = Document.find(params[:id])
+    @contract = current_user.contracts.find_by_id(params[:contract_id])
+    @document = @contract.documents.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb

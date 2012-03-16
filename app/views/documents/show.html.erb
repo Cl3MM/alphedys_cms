@@ -1,32 +1,25 @@
+<% content_for :breadcrumbs do %>
+<ul class="breadcrumb">
+  <li>
+    <i class="icon-home"></i>
+    <%= link_to "Mes contrats", user_path(current_user) %>
+    <span class="divider">/</span>
+  </li>
+  <li>
+    <%= link_to "Contrat : #{@contract.name.capitalize}", user_contract_path(current_user, @contract) %>
+    <span class="divider">/</span>
+  </li>
+  <li class="active">
+    <%= link_to "Fichier : #{@document.file_name.capitalize}", user_contract_document_path(current_user, @contract, @document) %>
+  </li>
+</ul>
+<% end %>
+
 <h1>Document</h1>
 
-<p>
-  <b>Contract</b><br>
-  <%= @document.contract_id %>
-</p>
-
-<p>
-  <b>Uploaded file file name</b><br>
-  <%= @document.uploaded_file_file_name %>
-</p>
-
-<p>
-  <b>Uploaded file content type</b><br>
-  <%= @document.uploaded_file_content_type %>
-</p>
-
-<p>
-  <b>Uploaded file file size</b><br>
-  <%= @document.uploaded_file_file_size %>
-</p>
-
-<p>
-  <b>Uploaded file updated at</b><br>
-  <%= @document.uploaded_file_updated_at %>
-</p>
 
 <div class="form-actions">
-  <%= link_to 'Back', documents_path, :class => 'btn'  %>
-  <%= link_to 'Edit', edit_document_path(@document), :class => 'btn' %>
-  <%= link_to 'Delete', document_path(@document), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+  <%#= link_to 'Back', documents_path, :class => 'btn'  %>
+  <%#= link_to 'Edit', edit_document_path(@document), :class => 'btn' %>
+  <%#= link_to 'Delete', document_path(@document), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
 </div>

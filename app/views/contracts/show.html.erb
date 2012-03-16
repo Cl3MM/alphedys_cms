@@ -1,3 +1,16 @@
+<% content_for :breadcrumbs do %>
+<ul class="breadcrumb">
+  <li>
+    <i class="icon-home"></i>
+    <%= link_to "Mes contrats", user_path(current_user) %>
+    <span class="divider">/</span>
+  </li>
+  <li class="active">
+    <%= link_to "Contrat : #{@contract.name.capitalize}", user_contract_path(current_user, @contract) %>
+  </li>
+</ul>
+<% end %>
+
 <h1>Fichiers associés au contrat <%= @contract.name.capitalize %></h1>
 <hr/>
 <% if @contract.documents.empty? %>
@@ -7,7 +20,7 @@
 <% end -%>
 
 <div class="form-actions">
-  <%= link_to 'Back', user_path(current_user), :class => 'btn'  %>
-  <%= link_to 'Edit', edit_user_contract_path(@user), :class => 'btn' %>
-  <%= link_to 'Delete', user_contract_path(@user), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+  <%= link_to 'Retour', user_path(current_user), :class => 'btn'  %>
+  <%#= link_to 'Edit', edit_user_contract_path(@user), :class => 'btn' %>
+  <%#= link_to 'Delete', user_contract_path(@user), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
 </div>

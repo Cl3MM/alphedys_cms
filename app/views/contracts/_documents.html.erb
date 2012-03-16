@@ -15,14 +15,28 @@
         <td><%= "#{index+1}." %></td>
         <td>
           <%= image_tag(get_image_from_ext(document.file_name)) %>
-          <%= document.file_name %>
-          <%= link_to document.file_name.capitalize,
+          <%= link_to document.file_name,
             user_contract_document_path(current_user, @contract, document),
             :class => "valign-top" %>
         </td>
         <td>Il y a <%= distance_of_time_in_words_to_now document.created_at %></td>
         <td><%= User.find_by_id(document.create_by).name_tag %></td>
         <td><%= document.versions.size %><td>
+        <td>
+          <div class="btn-group pull-right">
+            <%= link_to raw('<i class="icon-download"></i>'), download_url(document),
+              :class => "btn btn-mini",
+              :title => "Télécharger la version la plus récente du fichier", :rel => "tooltip" %>
+            <%= link_to raw('<i class="icon-eye-open"></i>'),
+              user_contract_document_path(current_user,@contract,document),
+              :class => "btn btn-mini",
+              :title => "Voir l'historique du fichier", :rel => "tooltip" %>
+            <%= link_to raw('<i class="icon-edit"></i>'),
+              edit_administration_user_contract_document_path(current_user, @contract, document),
+              :class => "btn btn-mini",
+              :title => "Uploader une version plus récente du fichier", :rel => "tooltip" %>
+          </div>
+        </td>
       </tr>
     <% end -%>
   </tbody>
