@@ -141,10 +141,6 @@ fr:
       prompt: "Veuillez sélectionner"
 
     # Default translation keys for submit and button FormHelper
-    submit:
-      create: 'Créer %{model}'
-      update: 'Mettre à jour %{model}'
-      submit: 'Enregistrer %{model}'
   number:
     format:
       separator: "."
@@ -245,6 +241,8 @@ fr:
     select:
       prompt: Veuillez sélectionner
     submit:
+      user:
+        update: "Modifier"
       create: Créer un(e) %{model}
       submit: Enregistrer ce(tte) %{model}
       update: Modifier ce(tte) %{model}

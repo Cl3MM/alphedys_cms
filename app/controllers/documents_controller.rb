@@ -31,6 +31,7 @@ class DocumentsController < ApplicationController
   # GET /documents/new
   # GET /documents/new.json
   def new
+    @contract = current_user.contracts.find_by_id(params[:contract_id])
     @document = Document.new
 
     respond_to do |format|

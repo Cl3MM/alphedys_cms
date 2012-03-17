@@ -12,7 +12,7 @@ fr:
       default_message: "Des erreurs ont été trouvées, merci de vérifier :"
     # Labels and hints examples
     labels:
-      password_conifrmation: "Confirmation du mot de passe"
+      password_confirmation: "Confirmation du mot de passe"
       password: 'Mot de passe'
     #     new:
     #       email: 'E-mail para efetuar o sign in.'

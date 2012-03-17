@@ -14,6 +14,21 @@
 <h1>Fichiers associés au contrat <%= @contract.name.capitalize %></h1>
 <hr/>
 <% if @contract.documents.empty? %>
+  <% content_for :right_pane do %>
+    <h2>Utilisation de l'interface</h2>
+    <p>
+      Vous vous trouvez maintenant dans l'espace permettant de gérer les fichiers associés à votre contrat.
+      Vous avez la possibilité d'ajouter et de mettre à jour des documents relatifs à la presatation fournie
+      par Alphédys Conseil.
+    </p>
+    <h2>Ajouter un fichier</h2>
+    <p>
+      Cliquez sur le bouton "Nouveau fichier", ou sur le lien "Ajouter un fichier". Une fois sur la page d'ajout de fichier
+      cliquez sur "Selectionner un fichier" puis sélectionner le fichier à envoyer.
+    </p>
+    <p>Si le fichier existe, l'ancienne version sera conservée, et vous pourrez la retrouver en vous rendant sur la page
+    détaillant l'historique du fichier. Dans le cas contraire, un nouveau document sera ajouter au contrat.</p>
+  <% end -%>
   <p>Aucun fichier : <%= link_to "Ajouter un fichier", new_user_contract_document_path(current_user,@contract) %></p>
 <% else %>
   <%= render :partial => 'documents' %>
