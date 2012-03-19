@@ -1,0 +1,20 @@
+<% content_for :breadcrumbs do %>
+<ul class="breadcrumb">
+  <li>
+    <i class="icon-home"></i>
+    <%= link_to "Mes contrats", user_path(current_user) %>
+    <span class="divider">/</span>
+  </li>
+  <li>
+    <%= link_to "Contrat : #{@contract.name.capitalize}", user_contract_path(current_user, @contract) %>
+    <span class="divider">/</span>
+  </li>
+  <li class="active">
+    <% if @document.file_name.nil? %>
+      <%= link_to "Nouveau fichier", new_user_contract_document_path(current_user, @contract) %>
+    <% else %>
+      <%= link_to "Fichier : #{@document.file_name.capitalize}", user_contract_document_path(current_user, @contract, @document) %>
+    <% end -%>
+  </li>
+</ul>
+<% end %>

@@ -3,9 +3,9 @@ class User < ActiveRecord::Base
   has_many :contracts, :dependent => :delete_all
 
   attr_accessible :email, :password, :password_confirmation,
-                  :role, :firstname, :lastname, :company,
-                  :phone, :cellphone, :fax, :street, :zip,
-                  :city
+    :role, :firstname, :lastname, :company,
+    :phone, :cellphone, :fax, :street, :zip,
+    :city
 
   validates_uniqueness_of :email, :on => :create
   validates_presence_of :email
@@ -41,18 +41,7 @@ class User < ActiveRecord::Base
 
   def total_disk_space
     contracts.reduce(0) do |result, c|
-      result += c.documents.reduce(0) do |res, doc|
-        if doc.versions.empty?
-          res += doc.uploaded_file_file_size
-        else
-          versions = (doc.versions.map{|n| n.number} << 1).sort
-          res += versions.reduce(doc.uploaded_file_file_size) do |size, v|
-            # binding.pry
-            doc.revert_to(v)
-            size += doc.uploaded_file_file_size
-          end
-        end
-      end
+      result += c.contract_disk_space
     end
   end
 

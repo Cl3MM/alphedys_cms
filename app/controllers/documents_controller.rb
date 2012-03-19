@@ -53,6 +53,7 @@ class DocumentsController < ApplicationController
 
   # GET /documents/1/edit
   def edit
+    @contract = current_user.contracts.find_by_id(params[:contract_id])
     @document = Document.find(params[:id])
   end
 

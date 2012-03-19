@@ -1,1 +1,11 @@
-<%= render :partial => 'form' %>
+<%= render :partial => 'breadcrumbs' %>
+
+<div class="span6 offset3">
+  <div class="page-header">
+    <h2>
+      Modification du fichier "<%= @document.file_name.capitalize %>"
+    </h2>
+  </div>
+
+  <%= render :partial => 'form', :locals => {:btn => "Ajouter une version plus récente" } %>
+</div>

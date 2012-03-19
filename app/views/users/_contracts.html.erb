@@ -5,9 +5,10 @@
     <tr>
       <th>#</th>
       <th>Nom</th>
-      <th># Fichier</th>
-      <th>Crée le</th>
-      <th>Actions</th>
+      <th class="center"># Fichiers</th>
+      <th class="center">Espace disque</th>
+      <th class="center">Crée le</th>
+      <th class="center">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -15,16 +16,18 @@
       <tr>
         <td><%= "#{index+1}." %></td>
         <td><%= link_to contract.name.capitalize, user_contract_path(@user, contract) %></td>
-        <td><%= contract.documents.size %></td>
-        <td>
+        <td class="center"><%= contract.documents.size %></td>
+        <td class="center"><%= number_to_human_size contract.contract_disk_space %></td>
+        <td class="center">
           <span rel="tooltip" title="Crée le <%= I18n.localize(contract.created_at, :format => "%d %B %Y")  %>">
             Il y a <%= distance_of_time_in_words_to_now(contract.created_at) %>
+            (Le <%= I18n.localize(contract.created_at, :format => "%d %B %Y") %>)
           </span>
         </td>
-        <td>
+        <td class="center">
           <div class="btn-group pull-right">
             <%= link_to raw('<i class="icon-eye-open"></i>'), user_contract_path(@user, contract),
-              :class => "btn btn-mini valign-top",
+              :class => "btn btn-mini valign-top center",
               :title => "Voir les détails du contrat et les fichiers associés", :rel => "tooltip"
             %>
           </div>

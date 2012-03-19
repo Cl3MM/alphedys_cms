@@ -1,1 +1,11 @@
-<%= render :partial => 'form' %>
+<%= render :partial => 'breadcrumbs', :locals => {:btn => "Nouveau fichier" } %>
+
+<div class="span6 offset3">
+  <div class="page-header">
+    <h2>
+      Ajouter un nouveau fichier
+    </h2>
+  </div>
+
+  <%= render :partial => 'form', :locals => {:btn => "Nouveau fichier" } %>
+</div>

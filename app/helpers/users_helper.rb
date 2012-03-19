@@ -18,7 +18,7 @@ module UsersHelper
     return   raw(
               "<strong>Nombre de contrats :</strong> %s" % (user.contracts.size == 0 ? "aucun" : "#{user.contracts.size}<br/>") + \
               "<strong>Nombre de fichiers :</strong> %s" % (user.file_number == 0 ? "aucun" : "#{user.file_number}<br/>") + \
-              ("<strong>Espace disque</strong> : #{number_to_human_size user.disk_space}" if user.total_disk_space > 0)
+              ("<strong>Espace disque</strong> : #{number_to_human_size user.total_disk_space}" if user.total_disk_space > 0)
               )
   end
 

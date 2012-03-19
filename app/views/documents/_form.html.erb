@@ -1,45 +1,20 @@
-<%= form_for [current_user, @contract, @document], :html => { :class => 'form-horizontal' } do |f| %>
-  <fieldset>
-    <legend><%= controller.action_name.capitalize %> Document</legend>
-
-    <div class="control-group">
-      <%= f.label :contract_id, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.number_field :contract_id, :class => 'number_field' %>
-      </div>
+<%= simple_form_for [current_user, @contract, @document], :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.error_notification %>
+  <% if current_user.errors.any? %>
+    <div class="alert alert-error">
+      <h4 class="alert-heading">Des erreurs ont été rencontrées</h4>
+      <a class="close" data-dismiss="alert">&times;</a>
+      <ul>
+        <% current_user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     </div>
+  <% end %>
 
-    <div class="control-group">
-      <%= f.label :uploaded_file_file_name, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :uploaded_file_file_name, :class => 'text_field' %>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <%= f.label :uploaded_file_content_type, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.text_field :uploaded_file_content_type, :class => 'text_field' %>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <%= f.label :uploaded_file_file_size, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.number_field :uploaded_file_file_size, :class => 'number_field' %>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <%= f.label :uploaded_file_updated_at, :class => 'control-label' %>
-      <div class="controls">
-        <%= f.datetime_select :uploaded_file_updated_at, :class => 'datetime_select' %>
-      </div>
-    </div>
-
-    <div class="form-actions">
-      <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%= link_to 'Cancel', user_contract_path(current_user, @contract), :class => 'btn' %>
-    </div>
-  </fieldset>
+  <%= f.input :uploaded_file, label: "Fichier à ajouter", prompt: "Mettre le fichier à jour" %>
+  <div class="form-actions">
+    <%= f.submit btn, :class => 'btn btn-primary' %>
+    <%= link_to raw('<i class="icon-ban-circle"></i> Retour'), user_contract_path(current_user, @contract), :type => :reset, :class => "btn btn" %>
+  </div>
 <% end %>

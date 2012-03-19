@@ -24,4 +24,9 @@ class Document < ActiveRecord::Base
     uploaded_file_file_name
   end
 
+  # Return an array containing a list of all document's versions
+  def get_versions
+    (document.versions.map{|n| n.number} << 1).map{|c| c  }
+  end
+
 end
