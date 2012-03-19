@@ -1,35 +1,37 @@
-<%= simple_form_for [:administration, @user], :html => { :class => 'form-horizontal' } do |f| %>
-  <% if @user.errors.any? %>
-    <div class="alert alert-error">
-      <h4 class="alert-heading">Une erreur est survenue</h4>
-      <a class="close" data-dismiss="alert">&times;</a>
-      <ul>
-        <% @user.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <fieldset>
+<div class="span6 offset3">
+  <%= simple_form_for [:administration, @user], :html => { :class => 'form-horizontal' } do |f| %>
+    <% if @user.errors.any? %>
+      <div class="alert alert-error">
+        <h4 class="alert-heading">Une erreur est survenue</h4>
+        <a class="close" data-dismiss="alert">&times;</a>
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <fieldset>
 
-    <legend>Identifiants de connexion</legend>
-    <%= f.input :email, label: "Adresse email", hint: "Cette adresse est votre identifiant de connexion." %>
-    <%= f.input :password, label: "Mot de passe" %>
-    <%= f.input :password_confirmation, label: "Confirmer le mot de passe" %>
-    <legend>Informations Personnelles</legend>
-    <%= f.input :firstname, label: "Prénom" %>
-    <%= f.input :lastname, label: "Nom" %>
-    <%= f.input :company, label: "Nom de l'Entreprise" %>
-    <%= f.input :phone, label: "Téléphone" %>
-    <%= f.input :cellphone, label: "Portable" %>
-    <%= f.input :fax, label: "Télécopie" %>
-    <%= f.input :street, label: "Rue" %>
-    <%= f.input :zip, label: "Code Postal" %>
-    <%= f.input :city, label: "Ville" %>
-    <%= f.error :base %>
-    <div class="form-actions">
-      <%= f.button :submit, "Mettre à jour les informations", :class => 'btn-primary' %>
-      <%= link_to 'Retour', administration_users_path, :type => :reset, :class => "btn btn" %>
-    </div>
-  </fieldset>
-<% end -%>
+      <legend>Identifiants de connexion</legend>
+      <%= f.input :email, label: "Adresse email", hint: "Cette adresse est votre identifiant de connexion." %>
+      <%= f.input :password, label: "Mot de passe" %>
+      <%= f.input :password_confirmation, label: "Confirmer le mot de passe" %>
+      <legend>Informations Personnelles</legend>
+      <%= f.input :firstname, label: "Prénom" %>
+      <%= f.input :lastname, label: "Nom" %>
+      <%= f.input :company, label: "Nom de l'Entreprise" %>
+      <%= f.input :phone, label: "Téléphone" %>
+      <%= f.input :cellphone, label: "Portable" %>
+      <%= f.input :fax, label: "Télécopie" %>
+      <%= f.input :street, label: "Rue" %>
+      <%= f.input :zip, label: "Code Postal" %>
+      <%= f.input :city, label: "Ville" %>
+      <%= f.error :base %>
+      <div class="form-actions">
+        <%= f.button :submit, "Mettre à jour les informations", :class => 'btn-primary' %>
+        <%= link_to 'Retour', administration_users_path, :type => :reset, :class => "btn btn" %>
+      </div>
+    </fieldset>
+  <% end -%>
+</div>

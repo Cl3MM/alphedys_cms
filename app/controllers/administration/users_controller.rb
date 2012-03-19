@@ -25,7 +25,7 @@ class Administration::UsersController < ApplicationController
         if @user.update_attributes(params[:user])
           redirect_to administration_user_url(@user), :notice => "Les informations de l'utilisateur #{@user.name_tag} ont été modifiées !"
         else
-          render "edit", :error => "Une erreur est survenue lors de la mise à jour de l'utilisateur #{@user.name_tag}."
+          render "edit", :alert => "Une erreur est survenue lors de la mise à jour de l'utilisateur #{@user.name_tag}."
         end
       }
     end
@@ -36,7 +36,7 @@ class Administration::UsersController < ApplicationController
     if @user.save
       redirect_to administration_users_url, :notice => "L'utilisateur #{@user.name_tag} a bien été créé !"
     else
-      render new_administration_user_path(@user), :error => "Une erreur est survenue lors de la création de l'utilisateur #{@user.name_tag}. Merci de recommencer."
+      render new_administration_user_path(@user), :alert => "Une erreur est survenue lors de la création de l'utilisateur #{@user.name_tag}. Merci de recommencer."
     end
   end
 

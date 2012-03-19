@@ -9,6 +9,13 @@
     <%= details_tag @user %>
     <small>[<%= link_to "Modifier", edit_administration_user_path(@user) %>]</small>
   </p>
+  <hr/>
+  <h2>Statistiques</h2>
+  <p>
+    <b>Nombre de contrats : </b><%= @user.contracts.size %><br/>
+    <b>Nombre de fichiers : </b><%= @user.file_number %><br/>
+    <b>Espace disque : </b><%= number_to_human_size @user.total_disk_space %>
+  </p>
 <% end %>
 
 <% title = raw("Contrats<small> appartenant à #{@user.name_tag}</small>") +

@@ -1,27 +1,29 @@
-<div class="page-header">
-  <h1>Interface d'échange client</h1>
+<div class="span6 offset3">
+  <div class="page-header">
+    <h1>Interface d'échange client</h1>
+  </div>
+  <%= form_tag sessions_path, :class => 'form-horizontal' do |f| %>
+    <fieldset>
+      <legend>Merci d'entrer vos identifiants afin d'accéder à votre espace</legend>
+      <div class="control-group">
+        <%= label_tag :email, "E-mail", :class => 'control-label' %>
+        <div class="controls">
+          <%= text_field_tag :email, params[:email], :class => 'text_field', :size => 30 %>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <%= label_tag :password, "Mot de Passe", :class => 'control-label' %>
+        <div class="controls">
+          <%= password_field_tag :password, nil, :class => 'password_field' %>
+          <p><%= link_to "Mot de passe oublié ?", new_password_reset_path %></p>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <%= submit_tag "Connexion", :class => 'btn btn-primary' %>
+      </div>
+
+    </fieldset>
+  <% end %>
 </div>
-<%= form_tag sessions_path, :class => 'form-horizontal' do |f| %>
-  <fieldset>
-    <legend>Merci d'entrer vos identifiants afin d'accéder à votre espace</legend>
-    <div class="control-group">
-      <%= label_tag :email, "E-mail", :class => 'control-label' %>
-      <div class="controls">
-        <%= text_field_tag :email, params[:email], :class => 'text_field', :size => 30 %>
-      </div>
-    </div>
-
-    <div class="control-group">
-      <%= label_tag :password, "Mot de Passe", :class => 'control-label' %>
-      <div class="controls">
-        <%= password_field_tag :password, nil, :class => 'password_field' %>
-        <p><%= link_to "Mot de passe oublié ?", new_password_reset_path %></p>
-      </div>
-    </div>
-
-    <div class="form-actions">
-      <%= submit_tag "Connexion", :class => 'btn btn-primary' %>
-    </div>
-
-  </fieldset>
-<% end %>

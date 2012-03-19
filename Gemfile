@@ -1,6 +1,10 @@
 source 'http://rubygems.org'
 
-gem 'pry', :group => :development
+group :development do 
+  gem 'pry'
+#  gem 'pry-remote'
+#  gem 'pry-nav'
+end
 
 #gem 'rails', '3.1.3'
 gem 'rails', '3.2.0'

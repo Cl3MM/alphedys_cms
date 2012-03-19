@@ -39,9 +39,28 @@ class User < ActiveRecord::Base
     self.role == role.to_s
   end
 
+  def total_disk_space
+    contracts.reduce(0) do |result, c|
+      result += c.documents.reduce(0) do |res, doc|
+        if doc.versions.empty?
+          res += doc.uploaded_file_file_size
+        else
+          versions = (doc.versions.map{|n| n.number} << 1).sort
+          res += versions.reduce(doc.uploaded_file_file_size) do |size, v|
+            # binding.pry
+            doc.revert_to(v)
+            size += doc.uploaded_file_file_size
+          end
+        end
+      end
+    end
+  end
+
   def disk_space
     contracts.reduce(0) do |result, c|
-      result += c.documents.reduce(0) {|r, s| r += s.uploaded_file_file_size }
+      result += c.documents.reduce(0) do |r, doc|
+        r += doc.uploaded_file_file_size
+      end
     end
   end
 
@@ -54,4 +73,10 @@ class User < ActiveRecord::Base
   def name_tag
     ((firstname && lastname).nil?  ? email : "#{firstname.capitalize} #{lastname.upcase}")
   end
+
+  # return an array containing the ids of the user's documents
+  def user_document_ids
+    contracts.map{|c| c.documents.map{|d| d.id}.flatten }.flatten.compact
+  end
+
 end

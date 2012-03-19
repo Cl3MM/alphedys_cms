@@ -3,6 +3,7 @@
     <tr>
       <th>#</th>
       <th>Fichier</th>
+      <th>Type</th>
       <th>Modifié</th>
       <th>Par</th>
       <th># Versions</th>
@@ -19,9 +20,10 @@
             user_contract_document_path(current_user, @contract, document),
             :class => "valign-top" %>
         </td>
+        <td><%= document.file_extension.upcase %></td>
         <td>Il y a <%= distance_of_time_in_words_to_now document.created_at %></td>
         <td><%= User.find_by_id(document.create_by).name_tag %></td>
-        <td><%= document.versions.size %><td>
+        <td><%= document.versions.size %></td>
         <td>
           <div class="btn-group pull-right">
             <%= link_to raw('<i class="icon-download"></i>'), download_url(document),

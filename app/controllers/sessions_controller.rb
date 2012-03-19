@@ -1,6 +1,8 @@
 # encoding: UTF-8
 class SessionsController < ApplicationController
+
   def new
+    flash.keep
     if logged_in?
       redirect_to current_user
     end

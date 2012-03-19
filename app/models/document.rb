@@ -16,6 +16,10 @@ class Document < ActiveRecord::Base
   validates_attachment_size :uploaded_file, :less_than => 10.megabytes
   validates_attachment_presence :uploaded_file
 
+  def file_extension
+    File.extname(uploaded_file_file_name).gsub(".","")
+  end
+
   def file_name
     uploaded_file_file_name
   end

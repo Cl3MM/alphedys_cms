@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class ApplicationController < ActionController::Base
   protect_from_forgery
   private
@@ -8,7 +9,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def authorize
-    redirect_to login_url, :alert => "Not authorized" if current_user.nil?
+    redirect_to login_url, :alert => "Désolé, vous n'avez pas le droit d'accéder à cette page." if current_user.nil?
   end
 
   def logged_in?
@@ -17,10 +18,6 @@ class ApplicationController < ActionController::Base
   helper_method :logged_in?
 
   def authorize_if_admin
-    redirect_to root_url, :alert => "Not authorized" if current_user.nil? or not current_user.is_admin?
+    redirect_to root_url, :alert => "Désolé, vous n'avez pas le droit d'accéder à cette page." if current_user.nil? or not current_user.is_admin?
   end
-#  rescue_from CanCan::AccessDenied do |exception|
-#  flash[:error] = "Access denied."
-#  redirect_to root_url
-#end
 end

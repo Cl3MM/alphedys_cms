@@ -1,14 +1,14 @@
 <% content_for :breadcrumbs do %>
-<ul class="breadcrumb">
-  <li>
-    <i class="icon-home"></i>
-    <%= link_to "Mes contrats", user_path(current_user) %>
-    <span class="divider">/</span>
-  </li>
-  <li class="active">
-    <%= link_to "Modifier mon profil", edit_user_path(current_user) %>
-  </li>
-</ul>
+  <ul class="breadcrumb">
+    <li>
+      <i class="icon-home"></i>
+      <%= link_to "Mes contrats", user_path(current_user) %>
+      <span class="divider">/</span>
+    </li>
+    <li class="active">
+      <%= link_to "Modifier mon profil", edit_user_path(current_user) %>
+    </li>
+  </ul>
 <% end %>
 
 <%= render :partial => "form" %>

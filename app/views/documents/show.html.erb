@@ -15,11 +15,29 @@
 </ul>
 <% end %>
 
-<h1>Document</h1>
+<div class="page-header">
+  <h2>
+    Historique des différentes versions du fichier "<%= @document.file_name.capitalize %>"
+  </h2>
+</div>
 
+<% if @document.versions.empty? %>
+  <p>"<%= @document.file_name.capitalize %>" ne dispose que d’une seule version, celle en cours. 
+    Si vous y apportez des modifications, vous pourrez la restaurer ultérieurement en 
+    une version précédente via cette page.</p>
+<% else %>
 
+  <%= render :partial => 'documents' %>
+
+<% end -%>
 <div class="form-actions">
-  <%#= link_to 'Back', documents_path, :class => 'btn'  %>
-  <%#= link_to 'Edit', edit_document_path(@document), :class => 'btn' %>
-  <%#= link_to 'Delete', document_path(@document), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+    <%= link_to raw('<i class="icon-ban-circle"></i> Retour'), user_contract_path(current_user, @contract), :class => 'btn'  %>
+              <%= link_to raw('<i class="icon-edit"></i> Mettre à jour le document'),
+                edit_user_contract_document_path(current_user, @contract, @document),
+                :class => "btn",
+                :title => "Uploader une nouvelle version du fichier", :rel => "tooltip" %>
+
+    <%#= link_to raw('<i class="icon-trash icon-white"></i> Supprimer le Fichier'),
+      user_contract_document_path(current_user, @contract, @document),
+      :method => 'delete', :confirm => 'Etes vous sur ?', :class => 'btn btn-danger pull-right' %>
 </div>

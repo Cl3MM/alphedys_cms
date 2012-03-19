@@ -1,10 +1,21 @@
+# encoding: UTF-8
 class DocumentsController < ApplicationController
+
   def get
-    document = current_user.documents.find_by_id(params[:id])
-    if document
+    document = Document.find_by_id(params[:id])
+    if document and current_user.user_document_ids.include? document.id
+      params[:vid] ||= -1
+      # On récupère les numéros de version pourle document
+      versions = (document.versions.map{|n| n.number} << 1).map{|c| c.to_s}
+      # si le numéro de version passé en paramètre n'existe pas, on prend le plus grand
+      version_number = (versions.include?(params[:vid]) ? params[:vid] : versions.max)
+      document.revert_to(version_number.to_i)
       send_file document.uploaded_file.path, :type => document.uploaded_file_content_type
+    else
+      redirect_to root_url, :alert => "Le fichier n'existe pas ou ne vous appartient pas."
     end
   end
+
   # GET /documents
   # GET /documents.json
   def index
