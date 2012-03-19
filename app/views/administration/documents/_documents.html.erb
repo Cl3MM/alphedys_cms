@@ -10,106 +10,38 @@
   </thead>
   <tbody>
     <%# @document.versions.limit(10).order("created_at DESC").each_with_index do |version, index| %>
-      <% @document.get_versions.each do |version| %>
-        <% document.revert_to(version) %>
-
+      <% @document.get_versions.sort.reverse.each do |version| %>
+        <% @document.revert_to(version) %>
     <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-  <% @document.versions.limit(10).order("created_at DESC").each_with_index do |version, index| %>
-    <%#= binding.pry %>
-    <tr>
-      <td><%= "#{@document.versions.size-index}." %></td>
+      <td><%= version %>.</td>
       <td>
-        <span rel="tooltip" title="Crée <%= I18n.localize(version.modifications["uploaded_file_updated_at"][0], :format => "le %d %B %Y à %H:%M:%S") %>">
-          Il y a <%= distance_of_time_in_words_to_now version.modifications["uploaded_file_updated_at"][0] %>
-      </span>
-    </td>
-    <td><%= User.find_by_id(version.user_id).name_tag %></td>
-    <td><%= number_to_human_size version.modifications["uploaded_file_file_size"][0] %></td>
-    <td>
-      <div class="btn-group pull-right">
-        <%= link_to raw('<i class="icon-download"></i>'), admin_download_url(@document, :vid => (version.number-1)),
-          :class => "btn btn-mini",
-          :title => "Télécharger le fichier", :rel => "tooltip" %>
-        <%= link_to raw('<i class="icon-trash icon-white"></i>'),
-          administration_user_contract_document_path(@user, @contract, @document),
-          :method => :delete, :class => "btn btn-danger btn-mini",
-          :title => "Supprimer le fichier", :rel => "tooltip",
-          :confirm => "Êtes vous sûr de vouloir supprimer le fichier #{@document.file_name.capitalize}" %>
-      </div>
-    </td>
-  </tr>
-<% end -%>
-    </tbody>
-  </table>
-
-
-
-
-
-
-  <table class="table table-striped table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Version #</th>
-        <th>Modifié le</th>
-        <th>Modifié Par</th>
-        <th>Taille</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><%= @document.versions.size+1 %>.</td>
-        <td>
-          <span rel="tooltip" title="Crée <%= I18n.localize(@document.uploaded_file_updated_at, :format => "le %d %B %Y à %H:%M:%S") %>">
-            Il y a <%= distance_of_time_in_words_to_now @document.uploaded_file_updated_at %>
+        <span rel="tooltip" title="Crée <%= I18n.localize(@document.uploaded_file_updated_at, :format => "le %d %B %Y à %H:%M:%S") %>">
+          Il y a <%= distance_of_time_in_words_to_now @document.uploaded_file_updated_at %>
         </span>
       </td>
       <td><%= User.find_by_id(@document.create_by).name_tag %></td>
       <td><%= number_to_human_size @document.uploaded_file_file_size %></td>
       <td>
         <div class="btn-group pull-right">
-          <%= link_to raw('<i class="icon-download"></i>'), admin_download_url(@document, :vid => @document.versions.last.number),
+          <%= link_to raw('<i class="icon-download"></i>'), admin_download_url(@document, :vid => version),
             :class => "btn btn-mini",
             :title => "Télécharger le fichier", :rel => "tooltip" %>
-          <%= link_to raw('<i class="icon-trash icon-white"></i>'),
-            administration_user_contract_document_path(@user, @contract, @document, :vid => @document.version.last.number),
-            :method => :delete, :class => "btn btn-danger btn-mini",
-            :title => "Supprimer le fichier", :rel => "tooltip",
-            :confirm => "Êtes vous sûr de vouloir supprimer le fichier #{@document.file_name.capitalize}" %>
+          <% if version == 1 %>
+            <%= link_to raw('<i class="icon-trash icon-white"></i>'),
+              administration_user_contract_document_path(@user, @contract, @document, :vid => version),
+              :method => :delete, :class => "btn btn-danger btn-mini",
+              :title => "Supprimer le fichier", :rel => "tooltip",
+              :confirm => "ATTENTION : Cette action supprimera le fichier original ainsi que toute son historique. Êtes vous sûr de vouloir supprimer le fichier #{@document.file_name.capitalize}" %>
+          <% else %>
+            <%= link_to raw('<i class="icon-trash icon-white"></i>'),
+              administration_user_contract_document_path(@user, @contract, @document, :vid => version),
+              :method => :delete, :class => "btn btn-danger btn-mini",
+              :title => "Supprimer le fichier", :rel => "tooltip",
+              :confirm => "Êtes vous sûr de vouloir supprimer le fichier #{@document.file_name.capitalize}" %>
+          <% end -%>
         </div>
       </td>
     </tr>
-    <% @document.versions.limit(10).order("created_at DESC").each_with_index do |version, index| %>
-      <%#= binding.pry %>
-      <tr>
-        <td><%= "#{@document.versions.size-index}." %></td>
-        <td>
-          <span rel="tooltip" title="Crée <%= I18n.localize(version.modifications["uploaded_file_updated_at"][0], :format => "le %d %B %Y à %H:%M:%S") %>">
-            Il y a <%= distance_of_time_in_words_to_now version.modifications["uploaded_file_updated_at"][0] %>
-        </span>
-      </td>
-      <td><%= User.find_by_id(version.user_id).name_tag %></td>
-      <td><%= number_to_human_size version.modifications["uploaded_file_file_size"][0] %></td>
-      <td>
-        <div class="btn-group pull-right">
-          <%= link_to raw('<i class="icon-download"></i>'), admin_download_url(@document, :vid => (version.number-1)),
-            :class => "btn btn-mini",
-            :title => "Télécharger le fichier", :rel => "tooltip" %>
-          <%= link_to raw('<i class="icon-trash icon-white"></i>'),
-            administration_user_contract_document_path(@user, @contract, @document),
-            :method => :delete, :class => "btn btn-danger btn-mini",
-            :title => "Supprimer le fichier", :rel => "tooltip",
-            :confirm => "Êtes vous sûr de vouloir supprimer le fichier #{@document.file_name.capitalize}" %>
-        </div>
-      </td>
-    </tr>
-  <% end -%>
-</tbody>
-  </table>
+<% end -%>
+  </tbody>
+</table>

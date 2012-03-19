@@ -41,5 +41,7 @@
 
     <%= link_to raw('<i class="icon-trash icon-white"></i> Supprimer le Fichier'),
       administration_user_contract_document_path(@user, @contract, @document),
-      :method => 'delete', :confirm => 'Etes vous sur ?', :class => 'btn btn-danger pull-right' %>
+      :method => 'delete', :class => 'btn btn-danger pull-right',
+      :confirm => "ATTENTION : Cette action supprimera le fichier original ainsi que toute son historique. 
+                   Êtes vous sûr de vouloir supprimer le fichier #{@document.file_name.capitalize}" %>
 </div>

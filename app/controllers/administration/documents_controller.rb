@@ -8,10 +8,10 @@ class Administration::DocumentsController < ApplicationController
       if document
         params[:vid] ||= -1
         # On récupère les numéros de version pourle document
-        versions = (document.versions.map{|n| n.number} << 1).map{|c| c.to_s}
+        versions = document.get_versions
         # si le numéro de version passé en paramètre n'existe pas, on prend le plus grand
-        version_number = (versions.include?(params[:vid]) ? params[:vid] : versions.max)
-        document.revert_to(version_number.to_i)
+        version_number = (versions.include?(params[:vid].to_i) ? params[:vid].to_i : versions.max)
+        document.revert_to(version_number)
         send_file document.uploaded_file.path, :type => document.uploaded_file_content_type
       end
     end
@@ -112,13 +112,41 @@ class Administration::DocumentsController < ApplicationController
 
   def destroy
     @user = User.find_by_id(params[:user_id])
-
     @document = Document.find(params[:id])
-    @document.destroy
+    if @document
+      params[:vid] ||= -1
+      # On récupère les numéros de version pourle document
+      versions = @document.get_versions
+      # 
+      #
+      # TODO : Penser au cas ou il n'y a qu'une seule version : détruire le rep parent.
+      #
+      #
+      # si le numéro de version passé en paramètre n'existe pas, on prend le plus grand
+      version_number = (versions.include?(params[:vid].to_i) ? params[:vid].to_i : versions.max)
 
-    respond_to do |format|
-      format.html { redirect_to administration_user_path(@user), :notice => "Le fichier a été supprimé avec succès !" }
+      if @document.get_versions.size == 1 or @document.versions.empty? or @document.version == 1
+        path = File.dirname(File.dirname(@document.uploaded_file.path))
+        FileUtils.rm_rf path
+        @document.destroy
+        flash[:notice] = "Fichier supprimé avec succès"
+      else
+        version = @document.versions.find_by_number(version_number)
+        @document.revert_to(version_number)
+        path = File.dirname(@document.uploaded_file.path)
+        @document.revert_to(@document.versions.last)
+
+        @document.versions.find_by_number(version_number).destroy unless version.nil?
+        FileUtils.rm_rf path
+        flash[:notice] = "Fichier supprimé avec succès !"
+      end
+    else
+      flash[:error] = "Impossible de supprimer le fichier."
     end
+
+  respond_to do |format|
+    format.html { redirect_to administration_user_path(@user) }
   end
+end
 
 end

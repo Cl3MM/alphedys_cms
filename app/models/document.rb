@@ -26,7 +26,7 @@ class Document < ActiveRecord::Base
 
   # Return an array containing a list of all document's versions
   def get_versions
-    (document.versions.map{|n| n.number} << 1).map{|c| c  }
+    (versions.map{|n| n.number} << 1).map{|c| c }.sort
   end
 
 end
