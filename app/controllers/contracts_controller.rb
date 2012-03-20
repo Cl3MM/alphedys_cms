@@ -1,4 +1,5 @@
 class ContractsController < ApplicationController
+  before_filter :authorize_if_admin, :only => [:new, :delete, :edit]
   # GET /contracts
   # GET /contracts.json
   def index

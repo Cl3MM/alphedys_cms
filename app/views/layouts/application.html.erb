@@ -24,9 +24,9 @@
             </ul>
             <% end -%>
             <ul class="nav pull-right">
-              <form class="navbar-search pull-left">
+              <!--<form class="navbar-search pull-left">
                 <input type="text" class="search-query" placeholder="Rechercher">
-              </form>
+              </form>-->
               <% if current_user %>
                 <ul class="nav">
                   <li class="dropdown">
@@ -45,9 +45,9 @@
                       <li><%= link_to "Voir mon Profil", user_path(current_user) %></li>
                       <li>
                         <% if current_user.is_admin? %>
-                        <%= link_to "Editer mon Profil", edit_user_path(current_user) %>
-                      <% else %>
                         <%= link_to "Editer mon Profil", edit_administration_user_path(current_user) %>
+                      <% else %>
+                        <%= link_to "Editer mon Profil", edit_user_path(current_user) %>
                       <% end -%>
                       </li>
                       <li class="divider"></li>

@@ -33,4 +33,13 @@
 </ul>
 <% end %>
 
-<%= render :partial => 'contracts' %>
+<h1>Mes contrats</h1>
+<hr/>
+
+<% if @user.contracts.empty? %>
+  <i class="icon-info-sign valign-middle"></i> Aucun contrat : veuillez contacter 
+  <%= mail_to "paul.roullet@alphedys.fr", "Paul ROULLET", :encode => "hex" %> 
+  pour plus d'informations.
+<% else %>
+  <%= render :partial => 'contracts' %>
+<% end -%>

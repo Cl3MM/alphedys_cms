@@ -1,5 +1,6 @@
 # encoding: UTF-8
 class UsersController < ApplicationController
+  before_filter :authorize_if_admin, :only => [:new]
 
   def index
     @users = User.find(:all)
@@ -11,11 +12,6 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
-#    unless authorize_if_admin
-#      redirect_to root_url, :notice => "Vous devez avoir un compte pour accéder à cette page"
-#    else
-#      render "new"
-#    end
   end
 
   def show

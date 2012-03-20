@@ -4,7 +4,7 @@ class Contract < ActiveRecord::Base
   validates_presence_of :name
 
   def contract_disk_space
-    documents.reduce(0) do |res, doc|
+    ret = documents.reduce(0) do |res, doc|
       if doc.versions.empty?
         res += doc.uploaded_file_file_size
       else
@@ -15,5 +15,6 @@ class Contract < ActiveRecord::Base
         end
       end
     end
+    return ret.nil? ? 0 : ret
   end
 end

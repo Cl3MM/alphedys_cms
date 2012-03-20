@@ -16,11 +16,20 @@ module UsersHelper
   end
 
   def contract_details_tag (user)
-    return   raw(
-              "<strong>Nombre de contrats :</strong> %s" % (user.contracts.size == 0 ? "aucun" : "#{user.contracts.size}<br/>") + \
-              "<strong>Nombre de fichiers :</strong> %s" % (user.file_number == 0 ? "aucun" : "#{user.file_number}<br/>") + \
-              ("<strong>Espace disque</strong> : #{number_to_human_size user.total_disk_space}" if user.total_disk_space > 0)
-              )
+    if user.contracts.size == 0
+      s = "<strong>Nombre de contrats :</strong> aucun<br/>"
+    else
+      s = "<strong>Nombre de contrats :</strong> #{user.contracts.size}<br/>"
+    end
+    if user.file_number == 0
+      s += "<strong>Nombre de fichiers :</strong> aucun<br/>"
+    else
+      s += "<strong>Nombre de fichiers :</strong> %s" % "#{user.file_number}<br/>"
+    end
+    if user.total_disk_space > 0
+      s += "<strong>Espace disque</strong> : #{number_to_human_size user.total_disk_space}"
+    end
+    return raw(s)
   end
 
 end

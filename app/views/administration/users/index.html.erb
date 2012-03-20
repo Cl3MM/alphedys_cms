@@ -19,6 +19,7 @@
       <td># Contrats</td>
       <td># Fichiers</td>
       <td>Espace disque</td>
+      <td>Rôle</td>
       <td>Connection</td>
       <td>Actions</td>
     </tr>
@@ -32,6 +33,7 @@
         </td>
         <td><%= user.contracts.size %></td>
         <td><%= user.file_number %></td>
+        <td><%= user.is_admin? ? "Administrateur" : "Utilisateur" %></td>
         <td><%= number_to_human_size user.disk_space %></td>
         <td></td>
         <td>

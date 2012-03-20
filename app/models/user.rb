@@ -40,9 +40,10 @@ class User < ActiveRecord::Base
   end
 
   def total_disk_space
-    contracts.reduce(0) do |result, c|
+    ret = contracts.reduce(0) do |result, c|
       result += c.contract_disk_space
     end
+    return (ret.nil? ? 0 : ret)
   end
 
   def disk_space
