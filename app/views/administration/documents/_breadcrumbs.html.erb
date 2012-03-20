@@ -1,0 +1,24 @@
+<% content_for :breadcrumbs do %>
+  <ul class="breadcrumb">
+    <li>
+      <i class="icon-home"></i>
+      <%= link_to "Administration", administration_users_path %>
+      <span class="divider">/</span>
+    </li>
+    <li>
+      <%= link_to "Utilisateur #{@user.name_tag}", administration_user_path(@user) %>
+      <span class="divider">/</span>
+    </li>
+    <li>
+      <%= link_to "Contrat : #{@contract.name.capitalize}", administration_user_contract_path(@user, @contract) %>
+      <span class="divider">/</span>
+    </li>
+    <li class="active">
+      <% if action == "edit" %>
+        <%= link_to "Mise à jour du document #{@document.file_name}", edit_administration_user_contract_document_path(@user, @contract, @document) %>
+      <% else %>
+        <%= link_to "Nouveau document", new_administration_user_contract_document_path(@user, @contract) %>
+      <% end -%>
+    </li>
+  </ul>
+<% end %>

@@ -32,7 +32,7 @@ class Administration::DocumentsController < ApplicationController
   def update
     @user = User.find_by_id(params[:user_id])
     @contract = @user.contracts.find_by_id(params[:contract_id])
-    if params[:document].nil?
+    if params[:document][:uploaded_file].nil?
       flash[:error] = "Vous devez sélectionner un fichier !"
     else
       docs =  @contract.documents
@@ -41,9 +41,8 @@ class Administration::DocumentsController < ApplicationController
       if docs.map {|x| x.file_name}.include? doc.file_name
         # on met à jour le document existant avec une nouvelle version
         @document = docs.find_by_uploaded_file_file_name(doc.file_name)
-        #binding.pry
         if doc.uploaded_file_file_size == @document.uploaded_file_file_size
-          flash[:error] = "La taille du nouveau fichier est la même que celle de l'ancien."
+          flash[:error] = "Un fichier portant le même nom et de taille similaire existe déjà."
         else
           @document.version
           @document.update_attributes(params[:document])
@@ -60,7 +59,7 @@ class Administration::DocumentsController < ApplicationController
       end
     end
     if flash[:error]
-      redirect_to new_administration_user_contract_document_path(@user,@contract, @document)
+      redirect_to new_administration_user_contract_document_path(@user,@contract)
     else
       redirect_to administration_user_contract_document_path(@user,@contract, @document)
     end
@@ -73,10 +72,9 @@ class Administration::DocumentsController < ApplicationController
   end
 
   def create
-    #binding.pry
     @user = User.find_by_id(params[:user_id])
     @contract = @user.contracts.find_by_id(params[:contract_id])
-    if params[:document].nil?
+    if params[:document][:uploaded_file].nil?
       flash[:error] = "Vous devez sélectionner un fichier !"
     else
       docs =  @contract.documents
@@ -85,9 +83,8 @@ class Administration::DocumentsController < ApplicationController
       if docs.map {|x| x.file_name}.include? doc.file_name
         # on met à jour le document existant avec une nouvelle version
         @document = docs.find_by_uploaded_file_file_name(doc.file_name)
-        #binding.pry
         if doc.uploaded_file_file_size == @document.uploaded_file_file_size
-          flash[:error] = "La taille du nouveau fichier est la même que celle de l'ancien."
+          flash[:error] = "Un fichier portant le même nom et de taille similaire existe déjà."
         else
           @document.version
           @document.update_attributes(params[:document])
@@ -104,7 +101,7 @@ class Administration::DocumentsController < ApplicationController
       end
     end
     if flash[:error]
-      redirect_to new_administration_user_contract_document_path(@user,@contract, @document)
+      redirect_to new_administration_user_contract_document_path(@user,@contract)
     else
       redirect_to administration_user_contract_document_path(@user,@contract, @document)
     end

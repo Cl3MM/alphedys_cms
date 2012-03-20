@@ -16,7 +16,8 @@
         <th>#</th>
         <th>Fichier</th>
         <th>Taille</th>
-        <th>Modifié</th>
+        <th>Modifié le</th>
+        <th>Modifié par</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -32,6 +33,7 @@
           </td>
           <td><%= number_to_human_size(document.uploaded_file_file_size) %></td>
           <td>Il y a <%= distance_of_time_in_words_to_now document.uploaded_file_updated_at %></td>
+          <td><%= User.find_by_id(document.create_by).name_tag %></td>
           <td>
             <div class="btn-group pull-right">
               <%= link_to raw('<i class="icon-download icon-white"></i>'), admin_download_url(document),

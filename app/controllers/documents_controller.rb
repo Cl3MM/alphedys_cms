@@ -1,6 +1,10 @@
 # encoding: UTF-8
 class DocumentsController < ApplicationController
 
+  before_filter :authorize
+
+  before_filter :authorize_if_admin, :only => [:destroy]
+
   def get
     document = Document.find_by_id(params[:id])
     if document and current_user.user_document_ids.include? document.id
@@ -57,35 +61,75 @@ class DocumentsController < ApplicationController
     @document = Document.find(params[:id])
   end
 
-  # POST /documents
-  # POST /documents.json
   def create
-    @document = Document.new(params[:document])
-
-    respond_to do |format|
-      if @document.save
-        format.html { redirect_to @document, notice: 'Document was successfully created.' }
-        format.json { render json: @document, status: :created, location: @document }
+    @user = current_user
+    @contract = @user.contracts.find_by_id(params[:contract_id])
+    if params[:document][:uploaded_file].nil?
+      flash[:error] = "Vous devez sélectionner un fichier !"
+    else
+      docs =  @contract.documents
+      doc = Document.new(params[:document])
+      # si fichier déja présent dans le contrat de l'utilisateur
+      if docs.map {|x| x.file_name}.include? doc.file_name
+        # on met à jour le document existant avec une nouvelle version
+        @document = docs.find_by_uploaded_file_file_name(doc.file_name)
+        if doc.uploaded_file_file_size == @document.uploaded_file_file_size
+          flash[:error] = "Un fichier portant le même nom et de taille similaire existe déjà."
+        else
+          @document.version
+          @document.update_attributes(params[:document])
+          @document.versions.last.update_attribute(:user_id, current_user)
+          flash[:notice] = "Le fichier #{@document.file_name} a été mis à jour avec succès !"
+        end
+      # sinon on crée un nouveau document
       else
-        format.html { render action: "new" }
-        format.json { render json: @document.errors, status: :unprocessable_entity }
+        @document = docs.new(params[:document])
+        @document.version
+        if @document.save
+          flash[:notice] = "Le fichier #{@document.file_name} a été ajouté avec succès !"
+        end
       end
+    end
+    if flash[:error]
+      redirect_to new_user_contract_document_path(@user,@contract)
+    else
+      redirect_to user_contract_document_path(@user,@contract, @document)
     end
   end
 
-  # PUT /documents/1
-  # PUT /documents/1.json
   def update
-    @document = Document.find(params[:id])
-
-    respond_to do |format|
-      if @document.update_attributes(params[:document])
-        format.html { redirect_to @document, notice: 'Document was successfully updated.' }
-        format.json { head :no_content }
+    @user = current_user
+    @contract = @user.contracts.find_by_id(params[:contract_id])
+    if params[:document][:uploaded_file].nil?
+      flash[:error] = "Vous devez sélectionner un fichier !"
+    else
+      docs =  @contract.documents
+      doc = Document.new(params[:document])
+      # si fichier déja présent dans le contrat de l'utilisateur
+      if docs.map {|x| x.file_name}.include? doc.file_name
+        # on met à jour le document existant avec une nouvelle version
+        @document = docs.find_by_uploaded_file_file_name(doc.file_name)
+        if doc.uploaded_file_file_size == @document.uploaded_file_file_size
+          flash[:error] = "Un fichier portant le même nom et de taille similaire existe déjà."
+        else
+          @document.version
+          @document.update_attributes(params[:document])
+          @document.versions.last.update_attribute(:user_id, current_user)
+          flash[:notice] = "Le fichier #{@document.file_name} a été mis à jour avec succès !"
+        end
+      # sinon on crée un nouveau document
       else
-        format.html { render action: "edit" }
-        format.json { render json: @document.errors, status: :unprocessable_entity }
+        @document = docs.new(params[:document])
+        @document.version
+        if @document.save
+          flash[:notice] = "Le fichier #{@document.file_name} a été ajouté avec succès !"
+        end
       end
+    end
+    if flash[:error]
+      redirect_to administration_user_contract_document_path(@user,@contract)
+    else
+      redirect_to user_contract_document_path(@user,@contract, @document)
     end
   end
 

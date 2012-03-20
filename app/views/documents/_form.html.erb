@@ -12,6 +12,7 @@
     </div>
   <% end %>
 
+  <%= f.hidden_field :create_by, :value => current_user.id %>
   <%= f.input :uploaded_file, label: "Fichier à ajouter", prompt: "Mettre le fichier à jour" %>
   <div class="form-actions">
     <%= f.submit btn, :class => 'btn btn-primary' %>

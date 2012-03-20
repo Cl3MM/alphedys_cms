@@ -1,49 +1,10 @@
-<% content_for :breadcrumbs do %>
-  <ul class="breadcrumb">
-    <li>
-      <i class="icon-home"></i>
-      <%= link_to "Administration", administration_users_path %>
-      <span class="divider">/</span>
-    </li>
-    <li>
-      <%= link_to "Utilisateur #{@user.name_tag}", administration_user_path(@user) %>
-      <span class="divider">/</span>
-    </li>
-    <li>
-      <%= link_to "Contrat : #{@contract.name.capitalize}", administration_user_contract_path(@user, @contract) %>
-      <span class="divider">/</span>
-    </li>
-    <li class="active">
-      <%= link_to "Nouveau document", new_administration_user_contract_document_path(@user, @contract) %>
-    </li>
-  </ul>
-<% end %>
+<%= render :partial => 'breadcrumbs', :locals => {:action => "edit"} %>
 
-<div class="span6 offset3">
-  <div class="page-header">
-    <h2>
-      Mise à jour du fichier
-      <small>"<%= @document.file_name %>" pour <%= @user.name_tag %></small>
-    </h2>
-  </div>
-  <%= simple_form_for [:administration, @user, @contract, @document], :html => { :class => 'form-horizontal' } do |f| %>
-    <%= f.error_notification %>
-    <% if @user.errors.any? %>
-      <div class="alert alert-error">
-        <h4 class="alert-heading">Mettre le fichier à jour</h4>
-        <a class="close" data-dismiss="alert">&times;</a>
-        <ul>
-          <% @user.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-    <%= f.hidden_field :create_by, :value => current_user.id %>
-    <%= f.input :uploaded_file, label: "Fichier à ajouter", prompt: "salut" %>
-    <div class="form-actions">
-      <%= f.submit 'Mettre à jour', :class => 'btn btn-primary' %>
-      <%= link_to "Retour", :back, :class => "btn" %>
-    </div>
-  <% end %>
+<div class="page-header">
+  <h2>
+    Mise à jour du fichier
+    <small>"<%= @document.file_name %>" pour <%= @user.name_tag %></small>
+  </h2>
 </div>
+
+<%= render :partial => 'form' %>

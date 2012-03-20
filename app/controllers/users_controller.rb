@@ -1,6 +1,8 @@
 # encoding: UTF-8
 class UsersController < ApplicationController
-  before_filter :authorize_if_admin, :only => [:new]
+  before_filter :authorize_if_admin, :only => [:create]
+
+  before_filter :authorize
 
   def index
     @users = User.find(:all)
@@ -24,7 +26,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_url, notice: "Votre compte a bien été crée !"
+      redirect_to root_url, notice: "Le compte utilisateur #{@user.tag_name} a bien été crée !"
     else
       render "new"
     end

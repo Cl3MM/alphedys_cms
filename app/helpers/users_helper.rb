@@ -16,10 +16,11 @@ module UsersHelper
   end
 
   def contract_details_tag (user)
+    s = ""
     if user.contracts.size == 0
-      s = "<strong>Nombre de contrats :</strong> aucun<br/>"
+      s += "<strong>Nombre de contrats :</strong> aucun<br/>"
     else
-      s = "<strong>Nombre de contrats :</strong> #{user.contracts.size}<br/>"
+      s += "<strong>Nombre de contrats :</strong> #{user.contracts.size}<br/>"
     end
     if user.file_number == 0
       s += "<strong>Nombre de fichiers :</strong> aucun<br/>"
