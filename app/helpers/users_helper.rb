@@ -2,7 +2,8 @@
 module UsersHelper
 
   def details_tag (user)
-    return   (user.phone.blank? ? "" : raw("<strong>Tel.</strong> #{user.phone}<br/>")) + \
+    return   (raw("<strong>Email: </strong> #{user.email}<br/>")) + \
+              (user.phone.blank? ? "" : raw("<strong>Tel.</strong> #{user.phone}<br/>")) + \
               (user.cellphone.blank? ? "" : raw("<strong>Port.</strong> #{user.cellphone}<br/>")) + \
                (user.fax.blank? ? "" : raw("<strong>Fax.</strong> #{user.fax}<br/>"))
   end
