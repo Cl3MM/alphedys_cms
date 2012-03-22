@@ -5,7 +5,7 @@
       <th>Modifié le</th>
       <th>Modifié Par</th>
       <th>Taille</th>
-      <th>Actions</th>
+      <th class="right"><i class="icon-cog valign-text-bottom"></i> Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -27,13 +27,13 @@
             :class => "btn btn-mini",
             :title => "Télécharger le fichier", :rel => "tooltip" %>
           <% if version == 1 %>
-            <%= link_to raw('<i class="icon-trash icon-white"></i>'),
+            <%#= link_to raw('<i class="icon-trash icon-white"></i>'),
               administration_user_contract_document_path(@user, @contract, @document, :vid => version),
               :method => :delete, :class => "btn btn-danger btn-mini",
               :title => "Supprimer le fichier", :rel => "tooltip",
               :confirm => "ATTENTION : Cette action supprimera le fichier original ainsi que toute son historique. Êtes vous sûr de vouloir supprimer le fichier #{@document.file_name.capitalize}" %>
           <% else %>
-            <%= link_to raw('<i class="icon-trash icon-white"></i>'),
+            <%#= link_to raw('<i class="icon-trash icon-white"></i>'),
               administration_user_contract_document_path(@user, @contract, @document, :vid => version),
               :method => :delete, :class => "btn btn-danger btn-mini",
               :title => "Supprimer le fichier", :rel => "tooltip",

@@ -109,36 +109,37 @@ class Administration::DocumentsController < ApplicationController
 
   def destroy
     @user = User.find_by_id(params[:user_id])
-    @document = Document.find(params[:id])
+    @contract = @user.contracts.find_by_id(params[:contract_id])
+    @document = @contract.documents.find_by_id(params[:id])
     if @document
       params[:vid] ||= -1
       # On récupère les numéros de version pourle document
-      versions = @document.get_versions
-      # 
+      ## versions = @document.get_versions
+      #
       #
       # TODO : Penser au cas ou il n'y a qu'une seule version : détruire le rep parent.
       #
       #
       # si le numéro de version passé en paramètre n'existe pas, on prend le plus grand
-      version_number = (versions.include?(params[:vid].to_i) ? params[:vid].to_i : versions.max)
+      ## version_number = (versions.include?(params[:vid].to_i) ? params[:vid].to_i : versions.max)
 
-      if @document.get_versions.size == 1 or @document.versions.empty? or @document.version == 1
-        path = File.dirname(File.dirname(@document.uploaded_file.path))
-        FileUtils.rm_rf path
-        @document.destroy
-        flash[:notice] = "Fichier supprimé avec succès"
-      else
-        version = @document.versions.find_by_number(version_number)
-        @document.revert_to(version_number)
-        path = File.dirname(@document.uploaded_file.path)
-        @document.revert_to(@document.versions.last)
+      # if @document.get_versions.size == 1 or @document.versions.empty? or @document.version == 1
+      path = File.dirname(File.dirname(@document.uploaded_file.path))
+      FileUtils.rm_rf path
+      @document.destroy
+      flash[:notice] = "Fichier supprimé avec succès"
+      ##else
+      ##  version = @document.versions.find_by_number(version_number)
+      ##  @document.revert_to(version_number)
+      ##  path = File.dirname(@document.uploaded_file.path)
+      ##  @document.revert_to(@document.versions.last)
 
-        @document.versions.find_by_number(version_number).destroy unless version.nil?
-        FileUtils.rm_rf path
-        flash[:notice] = "Fichier supprimé avec succès !"
-      end
+      ##  @document.versions.find_by_number(version_number).destroy unless version.nil?
+      ##  FileUtils.rm_rf path
+      ##  flash[:notice] = "Fichier supprimé avec succès !"
+      ##end
     else
-      flash[:error] = "Impossible de supprimer le fichier."
+      flash[:error] = "Impossible de supprimer le fichier : le fichier n'appartient pas au client."
     end
 
   respond_to do |format|
