@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_url, notice: "Le compte utilisateur #{@user.tag_name} a bien été crée !"
+      redirect_to root_url, notice: "Le compte utilisateur #{@user.name_tag} a bien été crée !"
     else
       render "new"
     end
