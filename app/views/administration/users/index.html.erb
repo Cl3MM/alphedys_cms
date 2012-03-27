@@ -15,13 +15,13 @@
 <table class="table table-striped table-bordered table-condensed">
   <thead>
     <tr>
-      <td>Name</td>
-      <td># Contrats</td>
-      <td># Fichiers</td>
-      <td>Espace disque</td>
-      <td>Rôle</td>
-      <td>Connection</td>
-      <th class="right"><i class="icon-cog valign-text-bottom"></i> Actions</th>
+      <th>Name</td>
+      <th># Contrats</th>
+      <th># Fichiers</th>
+      <th>Espace disque</th>
+      <th>Rôle</th>
+      <th>Connection</th>
+       <th class="right valign-bottom">Editer contrat | editer entreprise | supprimer</th>
     </tr>
   </thead>
   <tbody>
@@ -39,15 +39,15 @@
         <td>
           <div class="btn-group pull-right">
             <%= link_to raw('<i class="icon-eye-open"></i>'), administration_user_path(user),
-              :class => "btn btn-mini valign-top",
+              :class => "btn btn-small valign-top span1",
               :title => "Voir, ajouter, supprimer les contrats et fichiers de #{user.name_tag}", :rel => "tooltip"
             %>
             <%= link_to raw('<i class="icon-edit"></i>'), edit_administration_user_path(user),
-              :class => "btn btn-mini",
+              :class => "btn btn-small span1",
               :title => "Modifier les informations client", :rel => "tooltip"
             %>
           <% if user.is_admin? %>
-            <a href="#" title="Impossible de supprimer un Administrateur" class="btn btn-danger btn-mini disabled" rel="tooltip">
+            <a href="#" title="Impossible de supprimer un Administrateur" class="btn btn-danger btn-small disabled span1" rel="tooltip">
               <i class="icon-trash icon-white"></i>
             </a>
           <% else %>
@@ -55,7 +55,7 @@
                 administration_user_path(user),
                 :method => :delete,
                 :confirm => "Êtes vous sûr de vouloir supprimer l'utilisateur #{user.name_tag.upcase} de la société #{user.company_tag}?",
-                :class => "btn btn-danger btn-mini",
+                :class => "btn btn-danger btn-small span1",
                 :title => "Supprimer l'utilisateur", :rel => "tooltip")
             %>
           <% end -%>
