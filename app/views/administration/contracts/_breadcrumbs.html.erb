@@ -1,16 +1,16 @@
 <% content_for :breadcrumbs do %>
-<ul class="breadcrumb">
-  <li>
-    <i class="icon-home"></i>
-    <%= link_to "Administration", administration_users_path %>
-    <span class="divider">/</span>
-  </li>
-  <li>
-    <%= link_to "Entreprise : #{@user.company_tag}", administration_user_path(@user)%>
-    <span class="divider">/</span>
-  </li>
-  <li class="active">
-    <%= link_to(@contract.name.blank? ? "Nouveau contrat" : "Contrat : #{@contract.name}", new_administration_user_contract_path(@user)) %>
-  </li>
-</ul>
+  <ul class="breadcrumb">
+    <li>
+      <i class="icon-home"></i>
+      <%= link_to "Administration", administration_users_path %>
+      <span class="divider">/</span>
+    </li>
+    <li>
+      <%= link_to "Entreprise : #{@user.company_tag}", administration_user_path(@user)%>
+      <span class="divider">/</span>
+    </li>
+    <li class="active">
+      <%= link_to(@contract.name.blank? ? "Nouveau contrat" : "Contrat : #{@contract.name}", new_administration_user_contract_path(@user)) %>
+    </li>
+  </ul>
 <% end %>

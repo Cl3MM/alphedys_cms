@@ -8,6 +8,10 @@ class User < ActiveRecord::Base
     :phone, :cellphone, :fax, :street, :zip,
     :city
 
+  def company
+    self[:company] ? self[:company].upcase : nil
+  end
+
   validates_uniqueness_of :email, :on => :create
   validates_presence_of :email
   validates :password,
@@ -62,7 +66,7 @@ class User < ActiveRecord::Base
   end
 
   def company_tag
-    company.blank? ? "<strong>Entreprise</strong> non spécifiée" : company.capitalize
+    company.blank? ? "<strong>Entreprise</strong> non spécifiée" : company
   end
 
   def name_tag
