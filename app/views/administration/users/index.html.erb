@@ -54,7 +54,7 @@
             <%= link_to( raw('<i class="icon-trash icon-white"></i>'),
                 administration_user_path(user),
                 :method => :delete,
-                :confirm => "Êtes vous sûr de vouloir supprimer l'utilisateur #{user.name_tag.upcase} ?",
+                :confirm => "Êtes vous sûr de vouloir supprimer l'utilisateur #{user.name_tag.upcase} de la société #{user.company_tag}?",
                 :class => "btn btn-danger btn-mini",
                 :title => "Supprimer l'utilisateur", :rel => "tooltip")
             %>

@@ -10,7 +10,7 @@
     <span class="divider">/</span>
   </li>
   <li class="active">
-    <%= link_to "Nouveau Contrat", new_administration_user_contract_path(@user)%>
+    <%= link_to(@contract.name.blank? ? "Nouveau contrat" : "Contrat : #{@contract.name}", new_administration_user_contract_path(@user)) %>
   </li>
 </ul>
 <% end %>
