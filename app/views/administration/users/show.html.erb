@@ -29,9 +29,8 @@
 
 <% unless @user.contracts.empty? %>
   <% @user.contracts.each_with_index do |contract, index| %>
-    <div class="alert alert-info">
-      <h3 class="alert-heading">
-        <%= "#{index+1}. #{contract.name.capitalize}" %>
+      <h3 class="h3-border-bottom">
+        <%= "#{index+1}. contrat #{contract.name.capitalize}" %>
         <div class="btn-group pull-right">
                 <%= link_to raw('<i class="icon-eye-open"></i>'),
                   administration_user_contract_path(@user, contract),
@@ -52,7 +51,6 @@
                   :class => "btn btn-small btn-inverse" %>
         </div>
       </h3>
-    </div>
     <% if contract.documents.empty? %>
       Aucun fichier : <%= link_to 'Ajouter un fichier', new_administration_user_contract_document_path(@user, contract) %>
   <% else %>
