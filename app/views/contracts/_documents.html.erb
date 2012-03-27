@@ -7,7 +7,7 @@
       <th>Modifié le</th>
       <th>Modifié par</th>
       <th class="center"># Versions</th>
-      <th class="right"><i class="icon-cog valign-text-bottom"></i> Actions</th>
+      <th class="right"><i class="icon-cog valign-text-bottom"></i> Télécharger | Voir | Modifier</th>
     </tr>
   </thead>
   <tbody>
@@ -36,7 +36,7 @@
             <%= link_to raw('<i class="icon-edit"></i>'),
               edit_user_contract_document_path(current_user, @contract, document),
               :class => "btn btn-mini",
-              :title => "Uploader une version plus récente du fichier", :rel => "tooltip" %>
+              :title => "Mettre à jour le fichier", :rel => "tooltip" %>
           </div>
         </td>
       </tr>

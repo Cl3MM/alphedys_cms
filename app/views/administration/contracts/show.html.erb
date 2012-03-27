@@ -1,6 +1,6 @@
 <%= render :partial => 'breadcrumbs' %>
 
-<% title = raw("Contrat \"#{@contract.name}\" <small> de #{@user.name_tag}</small>") +
+<% title = raw("Contrat \"#{@contract.name}\" <small> de #{@user.company_tag}</small>") +
             link_to(raw('<i class="icon-trash icon-white"></i> Supprimer Contrat '),
               administration_user_contract_path(@user, @contract), :method => 'delete',
               :confirm => 'Etes vous sur ?', :class => 'btn btn-danger pull-right')
@@ -46,7 +46,7 @@
               <%= link_to raw('<i class="icon-edit"></i>'),
                 edit_administration_user_contract_document_path(@user, @contract, document),
                 :class => "btn btn-mini",
-                :title => "Uploader une version plus récente du fichier", :rel => "tooltip" %>
+                :title => "Mettre à jour le fichier", :rel => "tooltip" %>
               <%= link_to raw('<i class="icon-trash icon-white"></i>'),
                 administration_user_contract_document_path(@user, @contract, document),
                 :method => :delete, :class => "btn btn-danger btn-mini",
@@ -61,6 +61,6 @@
 <% end %>
 <div class="form-actions">
     <%= link_to raw('<i class="icon-edit"></i> Modifier le contrat'), edit_administration_user_contract_path(@user, @contract), :class => 'btn valign-bottom' %>
-    <%= link_to raw('<i class="icon-plus-sign"></i> Ajouter un fichier'), new_administration_user_contract_document_path(@user,@contract), :class => "btn" %>
+    <%= link_to raw('<i class="icon-plus-sign icon-white valign-text-bottom"></i> Ajouter un fichier'), new_administration_user_contract_document_path(@user,@contract), :class => "btn btn-primary" %>
     <%= link_to raw('<i class="icon-ban-circle"></i> Retour'), administration_user_path(@user), :class => 'btn pull-right'  %>
 </div>

@@ -29,7 +29,7 @@
       <tr>
         <td>
           <i class="icon-user"></i>
-          <%= link_to print_upto( user.name_tag, 30), administration_user_path(user) %>
+          <%= link_to raw(print_upto( user.company_tag, 40)), administration_user_path(user) %>
         </td>
         <td><%= user.contracts.size %></td>
         <td><%= user.file_number %></td>

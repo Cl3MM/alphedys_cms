@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class User < ActiveRecord::Base
   has_secure_password
   has_many :contracts, :dependent => :delete_all
@@ -60,13 +61,22 @@ class User < ActiveRecord::Base
     end
   end
 
+  def company_tag
+    company.blank? ? "<strong>Entreprise</strong> non spécifiée" : company.capitalize
+  end
+
   def name_tag
-    ((firstname && lastname).nil?  ? email : "#{firstname.capitalize} #{lastname.upcase}")
+    ((firstname && lastname).blank?  ? email : "#{firstname.capitalize} #{lastname.upcase}")
   end
 
   # return an array containing the ids of the user's documents
   def user_document_ids
     contracts.map{|c| c.documents.map{|d| d.id}.flatten }.flatten.compact
+  end
+
+  # Generate a friendly string randomically to be used as token.
+  def friendly_token
+    SecureRandom.base64(15).tr('+/=lIO0', 'pqrsxyz')
   end
 
 end
