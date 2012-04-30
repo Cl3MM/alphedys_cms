@@ -13,6 +13,8 @@ gem 'simple_form'
 gem "paperclip"
 gem 'vestal_versions', :git => 'git://github.com/adamcooper/vestal_versions'
 gem "breadcrumbs_on_rails", "~> 2.2.0"
+gem "thin"
+gem 'will_paginate', '~> 3.0'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
