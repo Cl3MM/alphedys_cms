@@ -312,3 +312,10 @@ fr:
   activerecord:
     errors:
       <<: *errors
+  views:
+    pagination:
+      previous: "Pr&eacute;cedente"
+      next: "Suivante"
+      last: "Derni&egrave;re page"
+      first: "Premi&egrave;re page"
+      truncate: "..."

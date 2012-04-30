@@ -12,6 +12,9 @@
     <%= link_to raw('<i class="icon-user icon-white"></i> Nouveau Client'), new_administration_user_path, :class => "btn btn-primary pull-right" %>
   </h1>
 </div>
+
+<%= paginate @users %>
+
 <table class="table table-striped table-bordered table-condensed">
   <thead>
     <tr>

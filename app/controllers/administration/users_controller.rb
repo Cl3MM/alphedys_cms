@@ -6,7 +6,7 @@ class Administration::UsersController < ApplicationController
     @user = User.new
   end
   def index
-    @users = User.find(:all, :order => :company)
+    @users = User.order(:company).page(params[:page]).per(10)
   end
 
   def edit
@@ -15,6 +15,7 @@ class Administration::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @contracts = @user.contracts.order(:name).page(params[:page]).per(5)
   end
 
   def update

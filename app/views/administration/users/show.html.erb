@@ -27,8 +27,9 @@
 
 <%= render :partial => "breadcrumbs", :locals => { :title => title } %>
 
-<% unless @user.contracts.empty? %>
-  <% @user.contracts.each_with_index do |contract, index| %>
+<% unless @contracts.blank? %>
+  <%= paginate @contracts %>
+  <% @contracts.each_with_index do |contract, index| %>
       <h3 class="h3-border-bottom">
         <%= "#{index+1}. contrat #{contract.name.capitalize}" %>
         <div class="btn-group pull-right">

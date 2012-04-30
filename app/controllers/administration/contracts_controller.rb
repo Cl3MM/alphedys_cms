@@ -3,7 +3,7 @@ class Administration::ContractsController < ApplicationController
   before_filter :authorize_if_admin
 
   def index
-    @contracts = Contract.all
+    @contracts = Contract.order(:name)
   end
 
   def new
