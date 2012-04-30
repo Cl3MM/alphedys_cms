@@ -6,7 +6,7 @@ class Administration::UsersController < ApplicationController
     @user = User.new
   end
   def index
-    @users = User.find(:all)
+    @users = User.find(:all, :order => :company)
   end
 
   def edit
