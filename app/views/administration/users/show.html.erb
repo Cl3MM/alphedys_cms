@@ -18,7 +18,7 @@
   </p>
 <% end %>
 
-<% title = raw("Contrats<small> appartenant à #{@user.company_tag}</small>") +
+<% title = raw("Contrats<small> appartenant à #{h(@user.company_tag)}</small>") +
   link_to(raw('<i class="icon-plus-sign icon-white"></i> Nouveau contrat'),
           new_administration_user_contract_path(@user),
           :class => 'btn btn-primary pull-right',

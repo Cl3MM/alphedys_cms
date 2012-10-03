@@ -1,6 +1,6 @@
 <%= render :partial => 'breadcrumbs' %>
 
-<% title = raw("Contrat \"#{@contract.name}\" <small> de #{@user.company_tag}</small>") +
+<% title = raw("Contrat \"#{h(@contract.name)}\" <small> de #{h(@user.company_tag)}</small>") +
             link_to(raw('<i class="icon-trash icon-white"></i> Supprimer Contrat '),
               administration_user_contract_path(@user, @contract), :method => 'delete',
               :confirm => 'Etes vous sur ?', :class => 'btn btn-danger pull-right')
