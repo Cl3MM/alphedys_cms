@@ -1,10 +1,10 @@
 GIT
-  remote: git://github.com/adamcooper/vestal_versions
-  revision: 6273df533f85014062e346cb1807b0531a809ee2
+  remote: git://github.com/laserlemon/vestal_versions
+  revision: c7aa512666b22e1a47b4fb36bb1679cb847a532e
   specs:
-    vestal_versions (1.2.2)
-      activerecord (>= 3.0.0)
-      activesupport (>= 3.0.0)
+    vestal_versions (1.2.3)
+      activerecord (~> 3.0)
+      activesupport (~> 3.0)
 
 GEM
   remote: http://rubygems.org/
