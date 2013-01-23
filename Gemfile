@@ -6,18 +6,14 @@ group :development do
 #  gem 'pry-nav'
 end
 
-#gem 'rails', '3.1.3'
-gem 'rails', '3.2.11'
+gem 'rails'
 gem 'simple_form'
-#gem 'cancan'
 gem "paperclip"
-#gem 'vestal_versions', :git => 'git://github.com/adamcooper/vestal_versions'
 gem 'vestal_versions', :git => 'git://github.com/laserlemon/vestal_versions'
 gem "breadcrumbs_on_rails", "~> 2.2.0"
-gem "thin"
+#gem "thin"
+gem 'puma'
 gem 'kaminari'
-
-#gem 'will_paginate', '~> 3.0'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
