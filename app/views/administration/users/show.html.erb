@@ -69,6 +69,7 @@
       </thead>
       <tbody>
         <% contract.documents.each do |document| %>
+          <% Rails.logger.debug document.file_name %>
           <tr>
             <td>
               <%= image_tag(get_image_from_ext(document.file_name)) %>
