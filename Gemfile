@@ -12,7 +12,9 @@ gem "paperclip"
 gem 'vestal_versions', :git => 'git://github.com/laserlemon/vestal_versions'
 gem "breadcrumbs_on_rails", "~> 2.2.0"
 #gem "thin"
-gem 'puma'
+#gem 'puma'
+gem 'puma', git: "git://github.com/puma/puma.git"
+
 gem 'kaminari'
 
 # Bundle edge Rails instead:
