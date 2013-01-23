@@ -11,7 +11,8 @@ gem 'rails', '3.2.11'
 gem 'simple_form'
 #gem 'cancan'
 gem "paperclip"
-gem 'vestal_versions', :git => 'git://github.com/adamcooper/vestal_versions'
+#gem 'vestal_versions', :git => 'git://github.com/adamcooper/vestal_versions'
+gem 'vestal_versions', :git => 'git://github.com/laserlemon/vestal_versions'
 gem "breadcrumbs_on_rails", "~> 2.2.0"
 gem "thin"
 gem 'kaminari'
