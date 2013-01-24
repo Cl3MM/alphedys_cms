@@ -82,7 +82,7 @@
             <td class="center"><%= document.versions.size+1 %></td>
             <td>
               <div class="btn-group pull-right">
-                <%= link_to raw('<i class="icon-download icon-white"></i>'), admin_download_url(document),
+                <%= link_to raw('<i class="icon-download icon-white"></i>'), admin_download_path(document),
                   :class => "btn btn-info btn-mini",
                   :title => "Télécharger le fichier", :rel => "tooltip" %>
                 <%= link_to raw('<i class="icon-eye-open"></i>'),

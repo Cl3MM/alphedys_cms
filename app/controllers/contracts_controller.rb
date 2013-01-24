@@ -77,7 +77,7 @@ class ContractsController < ApplicationController
     @contract.destroy
 
     respond_to do |format|
-      format.html { redirect_to user_url(current_user) }
+      format.html { redirect_to user_path(current_user) }
       format.json { head :no_content }
     end
   end

@@ -23,7 +23,7 @@
       <td><%= number_to_human_size @document.uploaded_file_file_size %></td>
       <td>
         <div class="btn-group pull-right">
-          <%= link_to raw('<i class="icon-download"></i>'), download_url(@document, :vid => version),
+          <%= link_to raw('<i class="icon-download"></i>'), download_path(@document, :vid => version),
             :class => "btn btn-mini",
             :title => "Télécharger le fichier", :rel => "tooltip" %>
           <%#= link_to raw('<i class="icon-trash icon-white"></i>'),

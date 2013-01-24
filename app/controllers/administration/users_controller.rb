@@ -24,7 +24,7 @@ class Administration::UsersController < ApplicationController
     respond_to do |format|
       format.html {
         if @user.update_attributes(params[:user])
-          redirect_to administration_user_url(@user), :notice => "Les informations de l'utilisateur #{@user.name_tag} ont été modifiées !"
+          redirect_to administration_user_path(@user), :notice => "Les informations de l'utilisateur #{@user.name_tag} ont été modifiées !"
         else
           render "edit", :alert => "Une erreur est survenue lors de la mise à jour de l'utilisateur #{@user.name_tag}."
         end
@@ -35,7 +35,7 @@ class Administration::UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      redirect_to administration_users_url, :notice => "L'utilisateur #{@user.name_tag} a bien été créé !"
+      redirect_to administration_users_path, :notice => "L'utilisateur #{@user.name_tag} a bien été créé !"
     else
       render new_administration_user_path(@user), :alert => "Une erreur est survenue lors de la création de l'utilisateur #{@user.name_tag}. Merci de recommencer."
     end
@@ -48,7 +48,7 @@ class Administration::UsersController < ApplicationController
     @user.destroy
 
     respond_to do |format|
-      format.html { redirect_to administration_users_url, :notice => "L'utilisateur #{name} a été supprimé avec succès !" }
+      format.html { redirect_to administration_users_path, :notice => "L'utilisateur #{name} a été supprimé avec succès !" }
     end
   end
 
